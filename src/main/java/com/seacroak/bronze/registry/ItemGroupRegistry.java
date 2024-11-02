@@ -44,6 +44,13 @@ public class ItemGroupRegistry {
           entries.add(new ItemStack(MainRegistry.BRONZE_DOOR));
           entries.add(new ItemStack(MainRegistry.BRONZE_TRAPDOOR));
 
+          entries.add(new ItemStack(MainRegistry.TIN_FRAMED_GLASS));
+          entries.add(new ItemStack(MainRegistry.CHISELED_TIN));
+          entries.add(new ItemStack(MainRegistry.TIN_TILES));
+          entries.add(new ItemStack(MainRegistry.CUT_TIN));
+          entries.add(new ItemStack(MainRegistry.CUT_TIN_STAIRS));
+          entries.add(new ItemStack(MainRegistry.CUT_TIN_SLAB));
+
         }).build();
   }
 
@@ -110,6 +117,14 @@ public class ItemGroupRegistry {
       content.addAfter(Items.CHAIN,
           MainRegistry.BRONZE_BLOCK,
           MainRegistry.TIN_BLOCK);
+
+      content.addAfter(Items.WAXED_OXIDIZED_CUT_COPPER_STAIRS,
+          MainRegistry.TIN_BLOCK,
+          MainRegistry.CHISELED_TIN,
+          MainRegistry.TIN_TILES,
+          MainRegistry.CUT_TIN,
+          MainRegistry.CUT_TIN_STAIRS,
+          MainRegistry.CUT_TIN_SLAB);
     });
 
     /* Redstone Blocks */

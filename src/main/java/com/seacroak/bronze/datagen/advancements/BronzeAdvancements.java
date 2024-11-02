@@ -1,6 +1,7 @@
 package com.seacroak.bronze.datagen.advancements;
 
 import com.seacroak.bronze.registry.MainRegistry;
+import com.seacroak.bronze.util.GenericUtils;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.AdvancementRewards;
@@ -29,8 +30,40 @@ public class BronzeAdvancements implements Consumer<Consumer<Advancement>> {
         )
         // The first string used in criterion is the name referenced by other advancements when they want to have 'requirements'
         .criterion("got_tin_ingot", InventoryChangedCriterion.Conditions.items(MainRegistry.TIN_INGOT))
-        .rewards(AdvancementRewards.Builder.recipe(ID("tin_block")))
+        .rewards(AdvancementRewards.Builder.recipe(ID("tin_block"))
+            .addRecipe(GenericUtils.ID("stonecutting/cut_tin"))
+            .addRecipe(GenericUtils.ID("stonecutting/tin_framed_glass"))
+            .addRecipe(GenericUtils.ID("stonecutting/chiseled_tin_from_tin_block"))
+            .addRecipe(GenericUtils.ID("stonecutting/cut_tin_from_tin_block"))
+            .addRecipe(GenericUtils.ID("stonecutting/cut_tin_slab_from_tin_block"))
+            .addRecipe(GenericUtils.ID("stonecutting/cut_tin_stairs_from_tin_block"))
+            .addRecipe(GenericUtils.ID("stonecutting/tin_tiles_from_tin_block")))
         .build(advancementConsumer, "bronze" + "/got_tin_ingot");
+
+    Advancement gotCutTinAdvancement = Advancement.Builder.create()
+        .parent(gotTinIngotAdvancement)
+        .display(
+            MainRegistry.CUT_TIN,
+            Text.translatable("advancement.bronze.got_cut_tin.title"),
+            Text.translatable("advancement.bronze.got_cut_tin.description"),
+            null,
+            AdvancementFrame.TASK, // Options: TASK, CHALLENGE, GOAL
+            true, // Show toast top right
+            true, // Announce to chat
+            false // Hidden in the advancement tab
+        )
+        // The first string used in criterion is the name referenced by other advancements when they want to have 'requirements'
+        .criterion("got_cut_tin", InventoryChangedCriterion.Conditions.items(MainRegistry.CUT_TIN))
+        .rewards(AdvancementRewards.Builder.recipe(GenericUtils.ID("tin_tiles"))
+            .addRecipe(GenericUtils.ID("stonecutting/chiseled_tin_from_cut_tin"))
+            .addRecipe(GenericUtils.ID("stonecutting/cut_tin_slab_from_cut_tin"))
+            .addRecipe(GenericUtils.ID("stonecutting/cut_tin_stairs_from_cut_tin"))
+            .addRecipe(GenericUtils.ID("stonecutting/tin_tiles_from_cut_tin"))
+            .addRecipe(GenericUtils.ID("cut_tin_slab"))
+            .addRecipe(GenericUtils.ID("cut_tin_stairs"))
+            .addRecipe(GenericUtils.ID("chiseled_tin_from_slabs"))
+        )
+        .build(advancementConsumer, "bronze" + "/got_cut_tin");
 
 
     Advancement gotBronzeBlendAdvancement = Advancement.Builder.create()

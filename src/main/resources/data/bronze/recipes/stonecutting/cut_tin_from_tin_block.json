@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "bronze:tin_block"
+  },
+  "count": 9,
+  "result": "bronze:cut_tin",
+
+  "group": "cut_tin",
+  "category": "building_blocks"
+}

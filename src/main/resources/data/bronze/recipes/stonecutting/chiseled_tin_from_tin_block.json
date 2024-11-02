@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "bronze:tin_block"
+  },
+  "count": 9,
+  "result": "bronze:chiseled_tin",
+  "group": "chiseled_tin",
+  "category": "building_blocks"
+}
