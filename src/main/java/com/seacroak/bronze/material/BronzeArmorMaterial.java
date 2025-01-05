@@ -35,7 +35,7 @@ public class BronzeArmorMaterial {
       enumMap.put(type, (Integer) defense.get(type));
     }
 
-    return Registry.registerReference(Registries.ARMOR_MATERIAL, Identifier.of(id), new ArmorMaterial(enumMap, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, repairIngredient, layers, (float) 1.0, (float) 0.0));
+    return Registry.registerReference(Registries.ARMOR_MATERIAL, Identifier.of(id), new ArmorMaterial(enumMap, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, repairIngredient, layers, (float) 1.0, (float) 0.0));
   }
   static {
 
