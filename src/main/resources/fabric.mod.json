@@ -3,12 +3,12 @@
 	"id": "bronze",
 	"version": "${version}",
 	"name": "Bronze",
-	"description": "Three copper plus one tin will turn your smile into a grin",
+	"description": "A new use for copper - bronze weapons, tools, armor and more",
 	"authors": [
 		"Khazoda"
 	],
 	"contact": {
-		"homepage": "https://khazoda.com",
+		"homepage": "https://khazoda.com#bronze",
 		"sources": "https://github.com/Khazoda/bronze"
 	},
 	"license": "MIT",

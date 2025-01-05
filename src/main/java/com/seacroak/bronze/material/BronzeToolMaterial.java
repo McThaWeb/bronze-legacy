@@ -33,7 +33,7 @@ public class BronzeToolMaterial implements ToolMaterial {
 
   @Override
   public int getEnchantability() {
-    return 13;
+    return 15;
   }
 
   @Override
