@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BeaconScreen.class)
 public abstract class BeaconScreenMixin {
-  @Inject(method = "drawBackground", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/math/MatrixStack;pop()V", shift = At.Shift.BEFORE))
+  @Inject(method = "drawBackground", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawItem(Lnet/minecraft/item/ItemStack;II)V", shift = At.Shift.AFTER))
   private void drawAfterIron(DrawContext context, float delta, int mouseX, int mouseY, CallbackInfo ci,
                              @Local(ordinal = 2) int i,
                              @Local(ordinal = 3) int j) {
