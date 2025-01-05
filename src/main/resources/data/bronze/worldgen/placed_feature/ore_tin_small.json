@@ -1,5 +1,5 @@
 {
-  "feature": "bronze:ore_tin",
+  "feature": "bronze:ore_tin_small",
   "placement": [
     {
       "type": "minecraft:count",
@@ -11,12 +11,12 @@
     {
       "type": "minecraft:height_range",
       "height": {
-        "type": "minecraft:trapezoid",
+        "type": "minecraft:uniform",
         "max_inclusive": {
-          "absolute": 64
+          "absolute": 102
         },
         "min_inclusive": {
-          "absolute": -44
+          "above_bottom": 0
         }
       }
     },
