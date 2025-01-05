@@ -67,12 +67,15 @@ public class MainRegistry {
 
   /* WorldGen */
   public static final RegistryKey<PlacedFeature> TIN_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, ID("ore_tin"));
+  public static final RegistryKey<PlacedFeature> TIN_ORE_SMALL_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, ID("ore_tin_small"));
 
 
   public static void init() {
     BRONZE_LOGGER.info("Initializing Main Registry");
     /* Add Tin Ore to WorldGen */
     BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, TIN_ORE_PLACED_KEY);
+    BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, TIN_ORE_SMALL_PLACED_KEY);
+
     /* Enable connected textures resourcepack */
     ResourcePackRegistry.register("bronze_ctm");
   }
