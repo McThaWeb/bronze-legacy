@@ -13,6 +13,6 @@ public class Bronze implements ModInitializer {
 
         // Use Fabric to bootstrap the Common mod.
         Constants.LOG.info("Hello Fabric world!");
-        CommonClass.init();
+        BronzeCommon.init();
     }
 }

@@ -1,0 +1,20 @@
+package com.khazoda.bronze.block;
+
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.TransparentBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+
+public class TinFramedGlass extends TransparentBlock {
+  public TinFramedGlass() {
+    super(BlockBehaviour.Properties.of()
+        .instrument(NoteBlockInstrument.HAT)
+        .strength(0.7F)
+        .sound(SoundType.GLASS)
+        .noOcclusion()
+        .isValidSpawn((state, world, pos, type) -> false)
+        .isRedstoneConductor((state, world, pos) -> false)
+        .isSuffocating((state, world, pos) -> false)
+        .isViewBlocking((state, world, pos) -> false));
+  }
+}
