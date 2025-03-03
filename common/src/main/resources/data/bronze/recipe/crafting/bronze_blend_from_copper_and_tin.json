@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "bronze_blend",
+  "ingredients": [
+    {
+      "item": "minecraft:raw_copper"
+    },
+    {
+      "item": "minecraft:raw_copper"
+    },
+    {
+      "item": "minecraft:raw_copper"
+    },
+    {
+      "item": "bronze:raw_tin"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "bronze:bronze_blend"
+  }
+}
