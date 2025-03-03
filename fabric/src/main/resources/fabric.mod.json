@@ -16,7 +16,10 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-          "com.khazoda.bronze.Bronze"
+            "com.khazoda.bronze.BronzeFabric"
+        ],
+        "client": [
+            "com.khazoda.bronze.BronzeFabricClient"
         ]
     },
     "mixins": [
