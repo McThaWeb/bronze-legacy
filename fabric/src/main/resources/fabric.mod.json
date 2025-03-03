@@ -1,6 +1,6 @@
 {
     "schemaVersion": 1,
-    "id": "${mod_id}",
+    "id": "bronze",
     "version": "${version}",
     "name": "${mod_name}",
     "description": "${description}",
@@ -8,20 +8,20 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://fabricmc.net/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "homepage": "https://khazoda.com",
+        "sources": "https://github.com/khazoda/bronze"
     },
     "license": "${license}",
-    "icon": "${mod_id}.png",
+    "icon": "bronze.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-            "com.example.examplemod.ExampleMod"
+          "com.khazoda.bronze.Bronze"
         ]
     },
     "mixins": [
-        "${mod_id}.mixins.json",
-        "${mod_id}.fabric.mixins.json"
+        "bronze.mixins.json",
+        "bronze.fabric.mixins.json"
     ],
     "depends": {
         "fabricloader": ">=${fabric_loader_version}",
