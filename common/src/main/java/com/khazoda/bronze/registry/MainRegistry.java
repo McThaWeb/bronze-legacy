@@ -79,7 +79,7 @@ public class MainRegistry {
   }
 
   private static Supplier<BlockItem> register(String name, Supplier<Block> block) {
-    Supplier<BlockItem> blockItemSupplier = ITEM_REGISTRAR.register(name, () -> new BlockItem(block.get(), new Item.Properties().stacksTo(1)));
+    Supplier<BlockItem> blockItemSupplier = ITEM_REGISTRAR.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     return blockItemSupplier;
   }
 }
