@@ -1,4 +1,5 @@
 {
+  "render_type": "minecraft:cutout_mipped",
   "parent": "minecraft:block/door_top_right",
   "textures": {
     "bottom": "bronze:block/bronze_door_bottom",
