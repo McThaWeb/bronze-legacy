@@ -1,7 +1,11 @@
 package com.khazoda.bronze.item;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -48,6 +52,15 @@ public class Sickle extends DiggerItem {
     BlockState state = level.getBlockState(pos);
 
     if ((state.getBlock() instanceof CropBlock || state.getBlock() instanceof NetherWartBlock) && isMature(state)) {
+      // Play break sound
+      level.playSound(null, pos, state.getSoundType().getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+      // Do swipe animation
+      player.swing(context.getHand());
+      // Add sweep particles
+      ((ServerLevel) level).sendParticles(ParticleTypes.SWEEP_ATTACK,
+          pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+          1, 0, 0, 0, 0);
+
       stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
       aoeHarvest(level, player, state, state, pos, 0);
       return InteractionResult.SUCCESS;
@@ -94,6 +107,11 @@ public class Sickle extends DiggerItem {
       if (entity instanceof Player player) {
         if (level.getBlockState(pos).getBlock() == currentBlockState.getBlock()) {
           currentBlockState.getBlock().playerDestroy(level, player, pos, currentBlockState, null, player.getMainHandItem());
+          // Add block breaking particles
+          ((ServerLevel) level).sendParticles(new BlockParticleOption(
+                  ParticleTypes.BLOCK, currentBlockState),
+              pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+              5, 0.2, 0.2, 0.2, 0.1);
         }
       } else {
         Block.dropResources(currentBlockState, level, pos, null, entity, ItemStack.EMPTY);
