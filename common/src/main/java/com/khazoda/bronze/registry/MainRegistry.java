@@ -6,13 +6,17 @@ import com.khazoda.bronze.item.*;
 import com.khazoda.bronze.material.BronzeArmorMaterial;
 import com.khazoda.bronze.material.BronzeToolMaterial;
 import com.khazoda.bronze.registry.helper.Reggie;
-import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.function.Supplier;
+
+import static com.khazoda.bronze.Constants.ID;
+import static net.minecraft.world.item.ArmorItem.Type.CHESTPLATE;
 
 
 public class MainRegistry {
@@ -20,16 +24,14 @@ public class MainRegistry {
   private static final Reggie<Item> ITEM_REGISTRAR = BronzeCommon.REGISTRARS.get(Registries.ITEM);
   private static final Reggie<ArmorMaterial> ARMOR_MATERIAL_REGISTRAR = BronzeCommon.REGISTRARS.get(Registries.ARMOR_MATERIAL);
 
-  /* ==========[ Material Registration ]========== */
-  public static final Holder<ArmorMaterial> BRONZE_ARMOR_MATERIAL = BronzeArmorMaterial.INSTANCE;
-
   /* ==========[ Item Registration ]========== */
   public static final Supplier<Item> RAW_TIN = ITEM_REGISTRAR.register("raw_tin", RawTin::new);
   public static final Supplier<Item> TIN_INGOT = ITEM_REGISTRAR.register("tin_ingot", TinIngot::new);
   public static final Supplier<Item> BRONZE_BLEND = ITEM_REGISTRAR.register("bronze_blend", BronzeBlend::new);
   public static final Supplier<Item> BRONZE_NUGGET = ITEM_REGISTRAR.register("bronze_nugget", BronzeNugget::new);
   public static final Supplier<Item> BRONZE_INGOT = ITEM_REGISTRAR.register("bronze_ingot", BronzeIngot::new);
-  public static final Supplier<Item> BRONZE_HORSE_ARMOR = ITEM_REGISTRAR.register("bronze_horse_armor", () -> new AnimalArmorItem(BRONZE_ARMOR_MATERIAL, AnimalArmorItem.BodyType.EQUESTRIAN, false, new Item.Properties().stacksTo(1)));
+  public static final Supplier<Item> BRONZE_HORSE_ARMOR = ITEM_REGISTRAR.register("bronze_horse_armor",
+      () -> new AnimalArmorItem(BronzeArmorMaterial.HOLDER, AnimalArmorItem.BodyType.EQUESTRIAN, false, new Item.Properties().stacksTo(1)));
 
   public static final Supplier<TieredItem> BRONZE_SWORD = ITEM_REGISTRAR.register("bronze_sword", () -> new BronzeSword(BronzeToolMaterial.INSTANCE));
   public static final Supplier<TieredItem> BRONZE_AXE = ITEM_REGISTRAR.register("bronze_axe", () -> new BronzeAxe(BronzeToolMaterial.INSTANCE));
@@ -38,10 +40,14 @@ public class MainRegistry {
   public static final Supplier<TieredItem> BRONZE_HOE = ITEM_REGISTRAR.register("bronze_hoe", () -> new BronzeHoe(BronzeToolMaterial.INSTANCE));
   public static final Supplier<TieredItem> SICKLE = ITEM_REGISTRAR.register("bronze_sickle", () -> new Sickle(BronzeToolMaterial.INSTANCE, new Item.Properties().stacksTo(1)));
 
-  public static final Supplier<Item> BRONZE_HELMET = ITEM_REGISTRAR.register("bronze_helmet", () -> new ArmorItem(BRONZE_ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(18))));
-  public static final Supplier<Item> BRONZE_CHESTPLATE = ITEM_REGISTRAR.register("bronze_chestplate", () -> new ArmorItem(BRONZE_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(18))));
-  public static final Supplier<Item> BRONZE_LEGGINGS = ITEM_REGISTRAR.register("bronze_leggings", () -> new ArmorItem(BRONZE_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(18))));
-  public static final Supplier<Item> BRONZE_BOOTS = ITEM_REGISTRAR.register("bronze_boots", () -> new ArmorItem(BRONZE_ARMOR_MATERIAL, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
+  public static final Supplier<Item> BRONZE_HELMET = ITEM_REGISTRAR.register("bronze_helmet",
+      () -> new ArmorItem(BronzeArmorMaterial.HOLDER, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(18))));
+  public static final Supplier<Item> BRONZE_CHESTPLATE = ITEM_REGISTRAR.register("bronze_chestplate",
+      () -> new ArmorItem(BronzeArmorMaterial.HOLDER, CHESTPLATE, new Item.Properties().durability(CHESTPLATE.getDurability(18))));
+  public static final Supplier<Item> BRONZE_LEGGINGS = ITEM_REGISTRAR.register("bronze_leggings",
+      () -> new ArmorItem(BronzeArmorMaterial.HOLDER, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(18))));
+  public static final Supplier<Item> BRONZE_BOOTS = ITEM_REGISTRAR.register("bronze_boots",
+      () -> new ArmorItem(BronzeArmorMaterial.HOLDER, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(18))));
 
   /* ==========[ Block Registration ]========== */
   public static final Supplier<Block> TIN_BLOCK = BLOCK_REGISTRAR.register("tin_block", TinBlock::new);
@@ -75,7 +81,12 @@ public class MainRegistry {
   public static final Supplier<BlockItem> CUT_TIN_STAIRS_ITEM = register("cut_tin_stairs", CUT_TIN_STAIRS);
   public static final Supplier<BlockItem> CUT_TIN_SLAB_ITEM = register("cut_tin_slab", CUT_TIN_SLAB);
 
+  /* WorldGen */
+  public static final ResourceKey<PlacedFeature> TIN_ORE_PLACED_KEY = ResourceKey.create(Registries.PLACED_FEATURE, ID("ore_tin"));
+  public static final ResourceKey<PlacedFeature> TIN_ORE_SMALL_PLACED_KEY = ResourceKey.create(Registries.PLACED_FEATURE, ID("ore_tin_small"));
+
   public static void init() {
+
   }
 
   private static Supplier<BlockItem> register(String name, Supplier<Block> block) {
