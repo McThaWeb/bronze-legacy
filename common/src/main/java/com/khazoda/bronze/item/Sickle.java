@@ -31,6 +31,7 @@ public class Sickle extends DiggerItem {
 
   @Override
   public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
+    /* Prevent crop blocks from being destroyed */
     return !(state.getBlock() instanceof CropBlock) && !(state.getBlock() instanceof NetherWartBlock);
   }
 
@@ -52,11 +53,8 @@ public class Sickle extends DiggerItem {
     BlockState state = level.getBlockState(pos);
 
     if ((state.getBlock() instanceof CropBlock || state.getBlock() instanceof NetherWartBlock) && isMature(state)) {
-      // Play break sound
       level.playSound(null, pos, state.getSoundType().getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
-      // Do swipe animation
       player.swing(context.getHand());
-      // Add sweep particles
       ((ServerLevel) level).sendParticles(ParticleTypes.SWEEP_ATTACK,
           pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
           1, 0, 0, 0, 0);
@@ -84,6 +82,12 @@ public class Sickle extends DiggerItem {
           if (level.getBlockState(pos).getBlock() == currentBlockState.getBlock()) {
             currentBlockState.getBlock().playerDestroy(level, player, pos, currentBlockState, null, player.getMainHandItem());
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+
+            // Add block breaking particles
+            ((ServerLevel) level).sendParticles(new BlockParticleOption(
+                    ParticleTypes.BLOCK, currentBlockState),
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                5, 0.2, 0.2, 0.2, 0.1);
           }
         } else {
           Block.dropResources(currentBlockState, level, pos, null, entity, ItemStack.EMPTY);
@@ -107,7 +111,6 @@ public class Sickle extends DiggerItem {
       if (entity instanceof Player player) {
         if (level.getBlockState(pos).getBlock() == currentBlockState.getBlock()) {
           currentBlockState.getBlock().playerDestroy(level, player, pos, currentBlockState, null, player.getMainHandItem());
-          // Add block breaking particles
           ((ServerLevel) level).sendParticles(new BlockParticleOption(
                   ParticleTypes.BLOCK, currentBlockState),
               pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
