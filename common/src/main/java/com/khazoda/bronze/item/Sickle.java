@@ -5,6 +5,7 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
@@ -13,6 +14,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -115,6 +117,7 @@ public class Sickle extends DiggerItem {
                   ParticleTypes.BLOCK, currentBlockState),
               pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
               5, 0.2, 0.2, 0.2, 0.1);
+          tryExtraHappyLootChance(level, pos);
         }
       } else {
         Block.dropResources(currentBlockState, level, pos, null, entity, ItemStack.EMPTY);
@@ -126,6 +129,46 @@ public class Sickle extends DiggerItem {
         aoeHarvest(level, entity, level.getBlockState(pos.north()), level.getBlockState(pos.north()), pos.north(), iteration + 1);
         aoeHarvest(level, entity, level.getBlockState(pos.west()), level.getBlockState(pos.west()), pos.west(), iteration + 1);
         aoeHarvest(level, entity, level.getBlockState(pos.south()), level.getBlockState(pos.south()), pos.south(), iteration + 1);
+      }
+    }
+  }
+
+  private static void tryExtraHappyLootChance(Level level, BlockPos pos) {
+    if (!level.isClientSide()) {
+      /* 1/50 chance to drop bonemeal when a crop tile is harvested */
+      if (level.random.nextInt(50) == 0) {
+        int count = level.random.nextInt(4) + 2; // Random number between 2-5
+        ItemStack bonemeal = new ItemStack(Items.BONE_MEAL, count);
+        Block.popResource(level, pos, bonemeal);
+
+        // Play a happy congratulatory note block sound with random pitch :)
+        float randomPitch = 1.0F + level.random.nextFloat() * 0.5F; // Random pitch between 1.0 and 1.5
+        level.playSound(null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D,
+            SoundEvents.NOTE_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, randomPitch);
+      }
+      /* 1/150 chance to drop mob loot */
+      if (level.random.nextInt(150) == 0) {
+        ItemStack drop;
+        // Randomly choose one of the mob drops
+        switch (level.random.nextInt(4)) {
+          case 0:
+            drop = new ItemStack(Items.SPIDER_EYE);
+            break;
+          case 1:
+            drop = new ItemStack(Items.ROTTEN_FLESH);
+            break;
+          case 2:
+            drop = new ItemStack(Items.BONE);
+            break;
+          default:
+            drop = new ItemStack(Items.GUNPOWDER);
+            break;
+        }
+        Block.popResource(level, pos, drop);
+        // Play a lower bell sound with random pitch
+        float spookyPitch = 0.8F + level.random.nextFloat() * 0.3F; // Random pitch between 0.8 and 1.1
+        level.playSound(null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D,
+            SoundEvents.NOTE_BLOCK_BELL, SoundSource.BLOCKS, 1.0F, spookyPitch);
       }
     }
   }
