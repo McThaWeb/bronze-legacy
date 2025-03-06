@@ -9,7 +9,9 @@
     ],
     "contact": {
         "homepage": "https://khazoda.com",
-        "sources": "https://github.com/khazoda/bronze"
+        "sources": "https://github.com/khazoda/bronze",
+        "issues": "https://github.com/Khazoda/basic-weapons/issues"
+
     },
     "license": "${license}",
     "icon": "bronze.png",
@@ -20,14 +22,24 @@
         ],
         "client": [
             "com.khazoda.bronze.BronzeFabricClient"
+        ],
+        "fabric-datagen": [
+            "com.khazoda.bronze.datagen.BronzeModDataGenerator"
         ]
     },
     "mixins": [
         "bronze.mixins.json",
         "bronze.fabric.mixins.json"
     ],
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.com/invite/vEZUkSxwR9"
+            }
+        }
+    },
     "depends": {
-        "fabricloader": ">=${fabric_loader_version}",
+        "fabricloader": ">=${fabric_loader_minimum_version}",
         "fabric-api": "*",
         "minecraft": "${minecraft_version}",
         "java": ">=${java_version}"
