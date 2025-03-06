@@ -8,9 +8,9 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://khazoda.com",
+        "homepage": "https://khazoda.com#bronze",
         "sources": "https://github.com/khazoda/bronze",
-        "issues": "https://github.com/Khazoda/basic-weapons/issues"
+        "issues": "https://github.com/Khazoda/bronze/issues"
 
     },
     "license": "${license}",
