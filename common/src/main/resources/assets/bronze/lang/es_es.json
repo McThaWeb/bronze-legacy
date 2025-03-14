@@ -44,5 +44,17 @@
   "tag.item.c.hoes": "Azadas",
   "tag.item.c.bronze_nuggets": "Pepita de bronce",
   "tag.item.c.pickaxes": "Picos",
-  "tag.item.c.raw_tin": "Estaño en bruto"
+  "tag.item.c.raw_tin": "Estaño en bruto",
+  "block.bronze.tin_framed_glass": "Cristal enmarcado con estaño",
+  "block.bronze.chiseled_tin": "Estaño cincelado",
+  "block.bronze.tin_tiles": "Baldosas de estaño",
+  "block.bronze.cut_tin": "Estaño cortado",
+  "block.bronze.cut_tin_stairs": "Escaleras de estaño cortado",
+  "block.bronze.cut_tin_slab": "Losa de estaño cortado",
+  "trim_material.bronze.bronze": "Incrustaciones de bronce",
+  "trim_material.bronze.tin": "Incrustaciones de estaño",
+  "advancement.bronze.got_cut_tin.title": "¿No es algo estaño cortado?",
+  "advancement.bronze.got_cut_tin.description": "Obtén un bloque de estaño cortado",
+  "resource_pack.bronze.bronze_ctm.name": "Mod Bronce texturas conectadas",
+  "resource_pack.bronze.bronze_ctm.description": "Añade soporte de texturas conectadas para algunos bloques (integrado: Bronce)"
 }
