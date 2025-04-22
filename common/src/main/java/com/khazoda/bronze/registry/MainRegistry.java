@@ -35,10 +35,10 @@ public class MainRegistry {
       () -> new Item(new Item.Properties().horseArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL).setId(itemKey("bronze_horse_armor"))));
 
   public static final Supplier<Item> BRONZE_SWORD = ITEM_REGISTRAR.register("bronze_sword", () -> new Item(new Item.Properties().sword(BronzeMaterial.BRONZE_TOOL_MATERIAL, 3.0F, -2.4F).setId(itemKey("bronze_sword"))));
-  public static final Supplier<Item> BRONZE_AXE = ITEM_REGISTRAR.register("bronze_axe", () -> new Item(new Item.Properties().axe(BronzeMaterial.BRONZE_TOOL_MATERIAL, 5.5F, -3.1F).setId(itemKey("bronze_axe"))));
+  public static final Supplier<Item> BRONZE_AXE = ITEM_REGISTRAR.register("bronze_axe", () -> new AxeItem(BronzeMaterial.BRONZE_TOOL_MATERIAL, 5.5F, -3.1F, new Item.Properties().setId(itemKey("bronze_axe"))));
   public static final Supplier<Item> BRONZE_PICKAXE = ITEM_REGISTRAR.register("bronze_pickaxe", () -> new Item(new Item.Properties().pickaxe(BronzeMaterial.BRONZE_TOOL_MATERIAL, 1.0F, -2.8F).setId(itemKey("bronze_pickaxe"))));
-  public static final Supplier<Item> BRONZE_SHOVEL = ITEM_REGISTRAR.register("bronze_shovel", () -> new Item(new Item.Properties().shovel(BronzeMaterial.BRONZE_TOOL_MATERIAL, 1.5F, -3.0F).setId(itemKey("bronze_shovel"))));
-  public static final Supplier<Item> BRONZE_HOE = ITEM_REGISTRAR.register("bronze_hoe", () -> new Item(new Item.Properties().hoe(BronzeMaterial.BRONZE_TOOL_MATERIAL, -2.0F, 0.0F).setId(itemKey("bronze_hoe"))));
+  public static final Supplier<Item> BRONZE_SHOVEL = ITEM_REGISTRAR.register("bronze_shovel", () -> new ShovelItem(BronzeMaterial.BRONZE_TOOL_MATERIAL, 1.5F, -3.0F, new Item.Properties().setId(itemKey("bronze_shovel"))));
+  public static final Supplier<Item> BRONZE_HOE = ITEM_REGISTRAR.register("bronze_hoe", () -> new HoeItem(BronzeMaterial.BRONZE_TOOL_MATERIAL, -2.0F, 0.0F, new Item.Properties().setId(itemKey("bronze_hoe"))));
   private static final TagKey<Block> SICKLE_MINEABLE_TAG = TagKey.create(Registries.BLOCK, Constants.ID("mineable/sickle"));
   public static final Supplier<Sickle> SICKLE = ITEM_REGISTRAR.register("bronze_sickle", () -> new Sickle(new Item.Properties().tool(BronzeMaterial.BRONZE_TOOL_MATERIAL, SICKLE_MINEABLE_TAG, 1.5f, -3.0f, 0.0f).setId(itemKey("bronze_sickle"))));
 
