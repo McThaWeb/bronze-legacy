@@ -12,10 +12,9 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -24,17 +23,18 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import static com.khazoda.bronze.Constants.ID;
 
-public class Sickle extends DiggerItem {
+public class Sickle extends Item {
   public static final TagKey<Block> SICKLE_EFFECTIVE_BLOCKS = TagKey.create(Registries.BLOCK, ID("mineable/sickle"));
 
-  public Sickle(Tier tier, Properties properties) {
-    super(tier, SICKLE_EFFECTIVE_BLOCKS, properties);
+  public Sickle(Properties properties) {
+    super(properties);
   }
 
   @Override
-  public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
+  public boolean canDestroyBlock(ItemStack stack, BlockState state, Level level, BlockPos pos, LivingEntity entity) {
     /* Prevent crop blocks from being destroyed */
-    return !(state.getBlock() instanceof CropBlock) && !(state.getBlock() instanceof NetherWartBlock);
+    return super.canDestroyBlock(stack, state, level, pos, entity)
+      && !(state.getBlock() instanceof CropBlock) && !(state.getBlock() instanceof NetherWartBlock);
   }
 
   @Override
@@ -69,9 +69,8 @@ public class Sickle extends DiggerItem {
   }
 
   @Override
-  public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+  public void hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
     stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
-    return true;
   }
 
   private static void aoeMow(Level level, LivingEntity entity, BlockState initialBlockState, BlockState currentBlockState, BlockPos pos, int iteration) {

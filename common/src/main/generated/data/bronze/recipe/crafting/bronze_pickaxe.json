@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "#c:rods/wooden",
+    "B": "#c:ingots/bronze"
+  },
+  "pattern": [
+    "BBB",
+    " # ",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "bronze:bronze_pickaxe"
+  }
+}
