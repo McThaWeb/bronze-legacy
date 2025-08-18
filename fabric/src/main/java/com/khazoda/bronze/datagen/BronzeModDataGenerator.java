@@ -8,7 +8,6 @@ public class BronzeModDataGenerator implements DataGeneratorEntrypoint {
   @Override
   public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
     FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
-
     pack.addProvider(BronzeModItemTagProvider::new);
     pack.addProvider(BronzeModModelProvider::new);
     pack.addProvider(BronzeModAdvancementsProvider::new);

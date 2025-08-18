@@ -12,6 +12,7 @@ public class BronzeNorge {
     BronzeCommon.init();
     eventBus.addListener(this::onInit);
     eventBus.addListener(this::onRegister);
+
   }
 
   private void onInit(FMLCommonSetupEvent event) {
