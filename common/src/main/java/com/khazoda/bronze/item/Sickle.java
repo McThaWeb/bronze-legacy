@@ -29,6 +29,7 @@ import static com.khazoda.bronze.Constants.ID;
 
 public class Sickle extends DiggerItem {
   public static final TagKey<Block> SICKLE_EFFECTIVE_BLOCKS = TagKey.create(Registries.BLOCK, ID("mineable/sickle"));
+  public static final TagKey<Block> SICKLE_AOE_BLOCKS = TagKey.create(Registries.BLOCK, ID("sickle_aoe"));
 
   public Sickle(Tier tier, Properties properties) {
     super(tier, SICKLE_EFFECTIVE_BLOCKS, properties);
@@ -42,7 +43,7 @@ public class Sickle extends DiggerItem {
 
   @Override
   public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miningEntity) {
-    if (state.getBlock() instanceof TallGrassBlock || state.getBlock() instanceof DoublePlantBlock) {
+    if (state.is(SICKLE_AOE_BLOCKS)) {
       aoeMow(level, miningEntity, state, state, pos, 0);
     }
 
@@ -89,12 +90,12 @@ public class Sickle extends DiggerItem {
   private static void aoeMow(Level level, LivingEntity entity, BlockState initialBlockState, BlockState currentBlockState, BlockPos pos, int iteration) {
     if (level.isClientSide()) return;
     /* Cut Grass */
-    if (initialBlockState.getBlock() instanceof TallGrassBlock || initialBlockState.getBlock() instanceof DoublePlantBlock) {
+    if (initialBlockState.is(SICKLE_AOE_BLOCKS)) {
       Block currentBlock = currentBlockState.getBlock();
-      if (currentBlock instanceof TallGrassBlock || currentBlock instanceof DoublePlantBlock) {
+      if (currentBlockState.is(SICKLE_AOE_BLOCKS)) {
         if (entity instanceof Player player) {
-          if (level.getBlockState(pos).getBlock() == currentBlockState.getBlock()) {
-            currentBlockState.getBlock().playerDestroy(level, player, pos, currentBlockState, null, player.getMainHandItem());
+          if (level.getBlockState(pos).getBlock() == currentBlock) {
+            currentBlock.playerDestroy(level, player, pos, currentBlockState, null, player.getMainHandItem());
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 
             // Add block breaking particles
