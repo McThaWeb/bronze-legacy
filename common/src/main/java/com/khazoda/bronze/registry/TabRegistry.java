@@ -24,6 +24,7 @@ public class TabRegistry {
             output.accept(MainRegistry.BRONZE_SHOVEL.get());
             output.accept(MainRegistry.BRONZE_HOE.get());
             output.accept(MainRegistry.SICKLE.get());
+            if(mod_loaded_farmersdelight) output.accept(MainRegistry.BRONZE_KNIFE.get());
             output.accept(MainRegistry.BRONZE_HELMET.get());
             output.accept(MainRegistry.BRONZE_CHESTPLATE.get());
             output.accept(MainRegistry.BRONZE_LEGGINGS.get());
@@ -48,7 +49,6 @@ public class TabRegistry {
             output.accept(MainRegistry.CUT_TIN_ITEM.get());
             output.accept(MainRegistry.CUT_TIN_STAIRS_ITEM.get());
             output.accept(MainRegistry.CUT_TIN_SLAB_ITEM.get());
-            if(mod_loaded_farmersdelight) output.accept(MainRegistry.BRONZE_KNIFE.get());
           })
           .build());
 
