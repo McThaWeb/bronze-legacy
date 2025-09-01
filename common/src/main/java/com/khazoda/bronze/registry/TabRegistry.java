@@ -1,11 +1,14 @@
 package com.khazoda.bronze.registry;
 
 import com.khazoda.bronze.BronzeCommon;
+import com.khazoda.bronze.platform.Services;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 
 import java.util.function.Supplier;
+
+import static com.khazoda.bronze.BronzeCommon.mod_loaded_farmersdelight;
 
 @SuppressWarnings("unused")
 public class TabRegistry {
@@ -45,6 +48,7 @@ public class TabRegistry {
             output.accept(MainRegistry.CUT_TIN_ITEM.get());
             output.accept(MainRegistry.CUT_TIN_STAIRS_ITEM.get());
             output.accept(MainRegistry.CUT_TIN_SLAB_ITEM.get());
+            if(mod_loaded_farmersdelight) output.accept(MainRegistry.BRONZE_KNIFE.get());
           })
           .build());
 
