@@ -1,6 +1,7 @@
 package com.khazoda.bronze.item;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -41,6 +43,14 @@ public class Sickle extends Item {
   public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miningEntity) {
     if (state.getBlock() instanceof TallGrassBlock || state.getBlock() instanceof DoublePlantBlock) {
       aoeMow(level, miningEntity, state, state, pos, 0);
+    }
+    /* Damage sickle when mining blocks */
+    Tool tool = stack.get(DataComponents.TOOL);
+    if (tool == null) {
+      return false;
+    }
+    if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0.0f && tool.damagePerBlock() > 0) {
+      stack.hurtAndBreak(tool.damagePerBlock(), miningEntity, EquipmentSlot.MAINHAND);
     }
     return true;
   }
