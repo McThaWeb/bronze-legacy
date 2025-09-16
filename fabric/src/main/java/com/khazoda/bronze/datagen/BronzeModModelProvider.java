@@ -51,6 +51,7 @@ public class BronzeModModelProvider extends FabricModelProvider {
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.SICKLE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
     itemModelGenerators.generateTrimmableItem(MainRegistry.BRONZE_HELMET.get(), BronzeMaterial.BRONZE_ARMOR_MATERIAL_KEY, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
     itemModelGenerators.generateTrimmableItem(MainRegistry.BRONZE_CHESTPLATE.get(), BronzeMaterial.BRONZE_ARMOR_MATERIAL_KEY, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);

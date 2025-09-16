@@ -7,7 +7,8 @@ import com.khazoda.bronze.registry.helper.Reginald;
 
 public class BronzeCommon {
 
-    public static final Reginald REGISTRARS = new Reginald();
+  public static final boolean mod_loaded_farmersdelight = Services.PLATFORM.isModLoaded("farmersdelight");
+  public static final Reginald REGISTRARS = new Reginald();
 
     public static void init() {
         MainRegistry.init();
