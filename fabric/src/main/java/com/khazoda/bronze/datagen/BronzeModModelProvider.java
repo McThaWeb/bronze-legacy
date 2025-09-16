@@ -22,7 +22,6 @@ public class BronzeModModelProvider extends FabricModelProvider {
     blockModelGenerators.createTrivialCube(MainRegistry.BRONZE_BLOCK.get());
     blockModelGenerators.createTrivialCube(MainRegistry.TIN_ORE.get());
     blockModelGenerators.createTrivialCube(MainRegistry.DEEPSLATE_TIN_ORE.get());
-    blockModelGenerators.createTrivialCube(MainRegistry.TIN_FRAMED_GLASS.get());
     blockModelGenerators.createTrivialCube(MainRegistry.TIN_TILES.get());
     blockModelGenerators.createTrivialCube(MainRegistry.BRONZE_BLEND_BLOCK.get());
     blockModelGenerators.createTrivialCube(MainRegistry.CHISELED_TIN.get());
