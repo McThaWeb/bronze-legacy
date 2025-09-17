@@ -15,6 +15,6 @@ public class BronzeModAdvancementsProvider extends FabricAdvancementProvider {
 
   @Override
   public void generateAdvancement(HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer) {
-    new BronzeAdvancements().accept(provider.asGetterLookup(), consumer);
+    new BronzeAdvancements().accept(provider, consumer);
   }
 }

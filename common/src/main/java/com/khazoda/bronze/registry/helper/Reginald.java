@@ -3,11 +3,13 @@ package com.khazoda.bronze.registry.helper;
 import com.khazoda.bronze.Constants;
 import com.khazoda.bronze.registry.MainRegistry;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Central registry manager for the Plushables mod.
@@ -71,14 +73,14 @@ public class Reginald {
   @SuppressWarnings("unchecked")
   public void registerAll() {
     for (var entry : registrars.entrySet()) {
-      Registry<Object> registry = ((Registry<Registry<Object>>) BuiltInRegistries.REGISTRY)
+      Optional<Holder.Reference<Registry<Object>>> registry = ((Registry<Registry<Object>>) BuiltInRegistries.REGISTRY)
           .get((ResourceKey<Registry<Object>>) entry.getKey());
-      if (registry == null) {
+      if (!registry.isPresent()) {
         Constants.LOG.error("No registry found with the key {}",
             entry.getKey());
         continue;
       }
-      entry.getValue().registerAll(registry);
+      entry.getValue().registerAll(registry.get().value());
     }
   }
 }

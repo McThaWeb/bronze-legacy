@@ -12,5 +12,6 @@ public class BronzeModDataGenerator implements DataGeneratorEntrypoint {
     pack.addProvider(BronzeModItemTagProvider::new);
     pack.addProvider(BronzeModModelProvider::new);
     pack.addProvider(BronzeModAdvancementsProvider::new);
+    pack.addProvider(BronzeModRecipeProvider::new);
   }
 }

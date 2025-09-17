@@ -7,6 +7,8 @@ import net.minecraft.world.item.CreativeModeTab;
 
 import java.util.function.Supplier;
 
+import static com.khazoda.bronze.BronzeCommon.mod_loaded_farmersdelight;
+
 @SuppressWarnings("unused")
 public class TabRegistry {
   public static final Supplier<CreativeModeTab> BRONZE_TAB = BronzeCommon.REGISTRARS
@@ -21,6 +23,7 @@ public class TabRegistry {
             output.accept(MainRegistry.BRONZE_SHOVEL.get());
             output.accept(MainRegistry.BRONZE_HOE.get());
             output.accept(MainRegistry.SICKLE.get());
+            if(mod_loaded_farmersdelight) output.accept(MainRegistry.BRONZE_KNIFE.get());
             output.accept(MainRegistry.BRONZE_HELMET.get());
             output.accept(MainRegistry.BRONZE_CHESTPLATE.get());
             output.accept(MainRegistry.BRONZE_LEGGINGS.get());
