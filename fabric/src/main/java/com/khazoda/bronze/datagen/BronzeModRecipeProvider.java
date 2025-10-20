@@ -72,7 +72,7 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
                     .unlockedBy(getHasName(MainRegistry.BRONZE_BLEND.get()), has(MainRegistry.BRONZE_BLEND.get()))
                     .save(output, RECIPEKEY("smelting/bronze_ingot_from_smelting_bronze_blend"));
                 SimpleCookingRecipeBuilder
-                    .blasting(Ingredient.of(MainRegistry.RAW_TIN.get()), RecipeCategory.MISC, MainRegistry.BRONZE_INGOT.get(), 2.8F, 100)
+                    .blasting(Ingredient.of(MainRegistry.BRONZE_BLEND.get()), RecipeCategory.MISC, MainRegistry.BRONZE_INGOT.get(), 2.8F, 100)
                     .unlockedBy(getHasName(MainRegistry.BRONZE_BLEND.get()), has(MainRegistry.BRONZE_BLEND.get()))
                     .save(output, RECIPEKEY("smelting/bronze_ingot_from_blasting_bronze_blend"));
                 SimpleCookingRecipeBuilder
