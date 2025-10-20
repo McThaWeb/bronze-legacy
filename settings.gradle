@@ -4,19 +4,19 @@ pluginManagement {
         mavenCentral()
         exclusiveContent {
             forRepository {
-                maven {
+                repositories.maven {
                     name = 'Fabric'
                     url = uri('https://maven.fabricmc.net')
                 }
             }
             filter {
-                includeGroup('net.fabricmc')
+                includeGroupAndSubgroups('net.fabricmc')
                 includeGroup('fabric-loom')
             }
         }
         exclusiveContent {
             forRepository {
-                maven {
+                repositories.maven {
                     name = 'Sponge'
                     url = uri('https://repo.spongepowered.org/repository/maven-public')
                 }
