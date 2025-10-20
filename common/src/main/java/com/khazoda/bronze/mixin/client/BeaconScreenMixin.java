@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BeaconScreen.class)
-@Debug(export = true)
 public abstract class BeaconScreenMixin {
   @Inject(method = "renderBg", at = @At(value = "INVOKE:LAST", target = "Lnet/minecraft/client/gui/GuiGraphics;renderItem(Lnet/minecraft/world/item/ItemStack;II)V"))
   private void drawBeforeIron(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY, CallbackInfo ci, @Local(ordinal = 2) int i, @Local(ordinal = 3) int j) {
