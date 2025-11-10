@@ -18,6 +18,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.function.Supplier;
 
+import static com.khazoda.bronze.BronzeCommon.mod_loaded_farmersdelight;
 import static com.khazoda.bronze.Constants.ID;
 
 
@@ -32,7 +33,7 @@ public class MainRegistry {
   public static final Supplier<Item> BRONZE_NUGGET = ITEM_REGISTRAR.register("bronze_nugget", () -> new BronzeNugget(itemKey("bronze_nugget")));
   public static final Supplier<Item> BRONZE_INGOT = ITEM_REGISTRAR.register("bronze_ingot", () -> new BronzeIngot(itemKey("bronze_ingot")));
   public static final Supplier<Item> BRONZE_HORSE_ARMOR = ITEM_REGISTRAR.register("bronze_horse_armor",
-      () -> new Item(new Item.Properties().horseArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL).setId(itemKey("bronze_horse_armor"))));
+          () -> new Item(new Item.Properties().horseArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL).setId(itemKey("bronze_horse_armor"))));
 
   public static final Supplier<Item> BRONZE_SWORD = ITEM_REGISTRAR.register("bronze_sword", () -> new Item(new Item.Properties().sword(BronzeMaterial.BRONZE_TOOL_MATERIAL, 3.0F, -2.4F).setId(itemKey("bronze_sword"))));
   public static final Supplier<Item> BRONZE_AXE = ITEM_REGISTRAR.register("bronze_axe", () -> new AxeItem(BronzeMaterial.BRONZE_TOOL_MATERIAL, 5.5F, -3.1F, new Item.Properties().setId(itemKey("bronze_axe"))));
@@ -43,13 +44,16 @@ public class MainRegistry {
   public static final Supplier<Sickle> SICKLE = ITEM_REGISTRAR.register("bronze_sickle", () -> new Sickle(new Item.Properties().tool(BronzeMaterial.BRONZE_TOOL_MATERIAL, SICKLE_MINEABLE_TAG, 1.5f, -3.0f, 0.0f).setId(itemKey("bronze_sickle"))));
 
   public static final Supplier<Item> BRONZE_HELMET = ITEM_REGISTRAR.register("bronze_helmet",
-      () -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.HELMET).setId(itemKey("bronze_helmet"))));
+          () -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.HELMET).setId(itemKey("bronze_helmet"))));
   public static final Supplier<Item> BRONZE_CHESTPLATE = ITEM_REGISTRAR.register("bronze_chestplate",
-      () -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.CHESTPLATE).setId(itemKey("bronze_chestplate"))));
+          () -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.CHESTPLATE).setId(itemKey("bronze_chestplate"))));
   public static final Supplier<Item> BRONZE_LEGGINGS = ITEM_REGISTRAR.register("bronze_leggings",
-      () -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.LEGGINGS).setId(itemKey("bronze_leggings"))));
+          () -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.LEGGINGS).setId(itemKey("bronze_leggings"))));
   public static final Supplier<Item> BRONZE_BOOTS = ITEM_REGISTRAR.register("bronze_boots",
-      () -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.BOOTS).setId(itemKey("bronze_boots"))));
+          () -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.BOOTS).setId(itemKey("bronze_boots"))));
+
+  /* Farmers Delight Knife Compatibility - add the conditional registration code from init() here when using datagen*/
+  public static Supplier<Item> BRONZE_KNIFE;
 
   /* ==========[ Block Registration ]========== */
   public static final Supplier<Block> TIN_BLOCK = BLOCK_REGISTRAR.register("tin_block", () -> new TinBlock(blockKey("tin_block")));
@@ -88,7 +92,13 @@ public class MainRegistry {
   public static final ResourceKey<PlacedFeature> TIN_ORE_SMALL_PLACED_KEY = ResourceKey.create(Registries.PLACED_FEATURE, ID("ore_tin_small"));
 
   public static void init() {
-
+    if (mod_loaded_farmersdelight) BRONZE_KNIFE = ITEM_REGISTRAR.register("bronze_knife",
+            () -> new BronzeKnifeFarmersDelight(new Item.Properties()
+                    .durability(BronzeMaterial.BRONZE_TOOL_MATERIAL.durability())
+                    .repairable(BronzeMaterial.BRONZE_TOOL_MATERIAL.repairItems())
+                    .enchantable(BronzeMaterial.BRONZE_TOOL_MATERIAL.enchantmentValue())
+                    .attributes(BronzeKnifeFarmersDelight.createAttributes(BronzeMaterial.BRONZE_TOOL_MATERIAL, 0.5F, -2.0F))
+                    .setId(itemKey("bronze_knife"))));
   }
 
   private static Supplier<BlockItem> register(String name, Supplier<Block> block) {

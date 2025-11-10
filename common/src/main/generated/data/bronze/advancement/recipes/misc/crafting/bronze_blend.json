@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:crafting/bronze_blend"
+        "recipe": "bronze:crafting/bronze_blend"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:crafting/bronze_blend"
+      "bronze:crafting/bronze_blend"
     ]
   }
 }

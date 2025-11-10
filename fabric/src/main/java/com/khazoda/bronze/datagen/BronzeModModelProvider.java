@@ -22,7 +22,6 @@ public class BronzeModModelProvider extends FabricModelProvider {
     blockModelGenerators.createTrivialCube(MainRegistry.BRONZE_BLOCK.get());
     blockModelGenerators.createTrivialCube(MainRegistry.TIN_ORE.get());
     blockModelGenerators.createTrivialCube(MainRegistry.DEEPSLATE_TIN_ORE.get());
-    blockModelGenerators.createTrivialCube(MainRegistry.TIN_FRAMED_GLASS.get());
     blockModelGenerators.createTrivialCube(MainRegistry.TIN_TILES.get());
     blockModelGenerators.createTrivialCube(MainRegistry.BRONZE_BLEND_BLOCK.get());
     blockModelGenerators.createTrivialCube(MainRegistry.CHISELED_TIN.get());
@@ -52,6 +51,7 @@ public class BronzeModModelProvider extends FabricModelProvider {
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.SICKLE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
     itemModelGenerators.generateTrimmableItem(MainRegistry.BRONZE_HELMET.get(), BronzeMaterial.BRONZE_ARMOR_MATERIAL_KEY, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
     itemModelGenerators.generateTrimmableItem(MainRegistry.BRONZE_CHESTPLATE.get(), BronzeMaterial.BRONZE_ARMOR_MATERIAL_KEY, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);

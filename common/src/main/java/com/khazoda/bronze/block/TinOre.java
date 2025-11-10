@@ -7,6 +7,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class TinOre extends Block {
   public TinOre(ResourceKey<Block> id) {
-    super(BlockBehaviour.Properties.of().strength(2.5f).sound(SoundType.METAL).requiresCorrectToolForDrops().setId(id));
+    super(BlockBehaviour.Properties.of().strength(2.5f).sound(SoundType.STONE).requiresCorrectToolForDrops().setId(id));
   }
 }
