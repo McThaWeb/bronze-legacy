@@ -5,7 +5,6 @@
   "item.bronze.raw_tin": "Raw Tin",
   "block.bronze.raw_tin_block": "Block of Raw Tin",
   "block.bronze.bronze_blend_block": "Block of Bronze Blend",
-  "item.bronze.tin_nugget": "Tin Nugget",
   "item.bronze.tin_ingot": "Tin Ingot",
   "block.bronze.tin_block": "Block of Tin",
   "item.bronze.bronze_blend": "Bronze Blend",
@@ -58,5 +57,6 @@
   "advancement.bronze.got_cut_tin.description": "Obtain a Block of Cut Tin",
   "resource_pack.bronze.bronze_ctm.name": "Bronze Mod Connected Textures",
   "resource_pack.bronze.bronze_ctm.description": "Adds connected textures support for some blocks (built-in: Bronze)",
-  "item.bronze.bronze_knife": "Bronze Knife"
+  "item.bronze.bronze_knife": "Bronze Knife",
+  "item.bronze.tin_nugget": "Tin Nugget"
 }
