@@ -43,7 +43,7 @@ for /r "%SEARCH_ROOT%" %%F in (*.png) do (
     :: remember original size
     for %%Z in ("%%F") do set "old=%%~zZ"
 
-    "%OXIPNG%" -q -o max --alpha --strip all -Z "%%F"
+    "%OXIPNG%" -q -o max --alpha --strip safe -Z "%%F"
     :: compare size
     for %%Z in ("%%F") do (
         if "%%~zZ"=="!old!" (
