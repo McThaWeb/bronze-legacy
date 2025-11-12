@@ -50,7 +50,7 @@ public class Sickle extends Item {
     if (tool == null) {
       return false;
     }
-    if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0.0f && tool.damagePerBlock() > 0) {
+    if (!level.isClientSide() && state.getDestroySpeed(level, pos) != 0.0f && tool.damagePerBlock() > 0) {
       stack.hurtAndBreak(tool.damagePerBlock(), miningEntity, EquipmentSlot.MAINHAND);
     }
     return true;
