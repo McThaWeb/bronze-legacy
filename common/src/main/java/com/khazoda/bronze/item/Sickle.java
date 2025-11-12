@@ -26,7 +26,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import static com.khazoda.bronze.Constants.ID;
 
 public class Sickle extends Item {
-  public static final TagKey<Block> SICKLE_EFFECTIVE_BLOCKS = TagKey.create(Registries.BLOCK, ID("mineable/sickle"));
   public static final TagKey<Block> SICKLE_AOE_BLOCKS = TagKey.create(Registries.BLOCK, ID("sickle_aoe"));
 
   public Sickle(Properties properties) {
