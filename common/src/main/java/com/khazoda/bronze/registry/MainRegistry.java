@@ -95,8 +95,9 @@ public class MainRegistry {
   public static final ResourceKey<PlacedFeature> TIN_ORE_SMALL_PLACED_KEY = ResourceKey.create(Registries.PLACED_FEATURE, ID("ore_tin_small"));
 
   public static void init() {
-    if (mod_loaded_farmersdelight)
-      BRONZE_KNIFE = ITEM_REGISTRAR.register("bronze_knife", () -> new BronzeKnifeFarmersDelight(new Item.Properties().durability(BronzeMaterial.BRONZE_TOOL_MATERIAL.durability()).repairable(BronzeMaterial.BRONZE_TOOL_MATERIAL.repairItems()).enchantable(BronzeMaterial.BRONZE_TOOL_MATERIAL.enchantmentValue()).attributes(BronzeKnifeFarmersDelight.createAttributes(BronzeMaterial.BRONZE_TOOL_MATERIAL, 0.5F, -2.0F)).setId(itemKey("bronze_knife"))));
+    if (mod_loaded_farmersdelight) {
+      BRONZE_KNIFE = registerItem("bronze_knife", id -> new BronzeKnifeFarmersDelight(BronzeKnifeFarmersDelight.createProperties(id)));
+    }
   }
 
 
