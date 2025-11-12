@@ -9,9 +9,9 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Mod(value = Constants.MOD_ID, dist = Dist.CLIENT)
-public class BronzeNorgeClient {
+public class BronzeNeoForgeClient {
 
-    public BronzeNorgeClient(IEventBus eventBus) {
+    public BronzeNeoForgeClient(IEventBus eventBus) {
         eventBus.addListener(this::onClientSetup);
     }
 
