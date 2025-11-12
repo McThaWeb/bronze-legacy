@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Recipe;
 
+import net.minecraft.world.level.block.Block;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,15 +20,15 @@ public class Constants {
 		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}
 
-	public static ResourceKey<Item> BLOCKKEY(String name) {
+	public static ResourceKey<Block> blockKey(String name) {
+		return ResourceKey.create(Registries.BLOCK, ID(name));
+	}
+
+	public static ResourceKey<Item> itemKey(String name) {
 		return ResourceKey.create(Registries.ITEM, ID(name));
 	}
 
-	public static ResourceKey<Item> ITEMKEY(String name) {
-		return ResourceKey.create(Registries.ITEM, ID(name));
-	}
-
-	public static ResourceKey<Recipe<?>> RECIPEKEY(String name) {
+	public static ResourceKey<Recipe<?>> recipeKey(String name) {
     	return ResourceKey.create(Registries.RECIPE, ID(name));
   	}
 }

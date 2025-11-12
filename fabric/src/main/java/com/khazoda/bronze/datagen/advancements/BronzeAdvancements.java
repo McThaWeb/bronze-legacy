@@ -15,7 +15,7 @@ import net.minecraft.world.item.Item;
 import java.util.function.Consumer;
 
 import static com.khazoda.bronze.Constants.ID;
-import static com.khazoda.bronze.Constants.RECIPEKEY;
+import static com.khazoda.bronze.Constants.recipeKey;
 
 @SuppressWarnings("removal")
 public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>> {
@@ -41,14 +41,14 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
             false
         )
         .addCriterion("got_tin_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.TIN_INGOT.get()))
-        .rewards(AdvancementRewards.Builder.recipe(RECIPEKEY("crafting/tin_block"))
-            .addRecipe(RECIPEKEY("stonecutting/cut_tin"))
-            .addRecipe(RECIPEKEY("stonecutting/tin_framed_glass"))
-            .addRecipe(RECIPEKEY("stonecutting/chiseled_tin_from_tin_block"))
-            .addRecipe(RECIPEKEY("stonecutting/cut_tin_from_tin_block"))
-            .addRecipe(RECIPEKEY("stonecutting/cut_tin_slab_from_tin_block"))
-            .addRecipe(RECIPEKEY("stonecutting/cut_tin_stairs_from_tin_block"))
-            .addRecipe(RECIPEKEY("stonecutting/tin_tiles_from_tin_block")))
+        .rewards(AdvancementRewards.Builder.recipe(recipeKey("crafting/tin_block"))
+            .addRecipe(recipeKey("stonecutting/cut_tin"))
+            .addRecipe(recipeKey("stonecutting/tin_framed_glass"))
+            .addRecipe(recipeKey("stonecutting/chiseled_tin_from_tin_block"))
+            .addRecipe(recipeKey("stonecutting/cut_tin_from_tin_block"))
+            .addRecipe(recipeKey("stonecutting/cut_tin_slab_from_tin_block"))
+            .addRecipe(recipeKey("stonecutting/cut_tin_stairs_from_tin_block"))
+            .addRecipe(recipeKey("stonecutting/tin_tiles_from_tin_block")))
         .build(ID("bronze/got_tin_ingot"));
 
     advancementConsumer.accept(gotTinIngotAdvancement);
@@ -66,14 +66,14 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
             false
         )
         .addCriterion("got_cut_tin", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.CUT_TIN.get()))
-        .rewards(AdvancementRewards.Builder.recipe(RECIPEKEY("crafting/tin_tiles"))
-            .addRecipe(RECIPEKEY("stonecutting/chiseled_tin_from_cut_tin"))
-            .addRecipe(RECIPEKEY("stonecutting/cut_tin_slab_from_cut_tin"))
-            .addRecipe(RECIPEKEY("stonecutting/cut_tin_stairs_from_cut_tin"))
-            .addRecipe(RECIPEKEY("stonecutting/tin_tiles_from_cut_tin"))
-            .addRecipe(RECIPEKEY("crafting/cut_tin_slab"))
-            .addRecipe(RECIPEKEY("crafting/cut_tin_stairs"))
-            .addRecipe(RECIPEKEY("crafting/chiseled_tin_from_slabs")))
+        .rewards(AdvancementRewards.Builder.recipe(recipeKey("crafting/tin_tiles"))
+            .addRecipe(recipeKey("stonecutting/chiseled_tin_from_cut_tin"))
+            .addRecipe(recipeKey("stonecutting/cut_tin_slab_from_cut_tin"))
+            .addRecipe(recipeKey("stonecutting/cut_tin_stairs_from_cut_tin"))
+            .addRecipe(recipeKey("stonecutting/tin_tiles_from_cut_tin"))
+            .addRecipe(recipeKey("crafting/cut_tin_slab"))
+            .addRecipe(recipeKey("crafting/cut_tin_stairs"))
+            .addRecipe(recipeKey("crafting/chiseled_tin_from_slabs")))
         .build(ID("bronze/got_cut_tin"));
 
     advancementConsumer.accept(gotCutTinAdvancement);
@@ -91,9 +91,9 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
             false
         )
         .addCriterion("got_bronze_blend", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.BRONZE_BLEND.get()))
-        .rewards(AdvancementRewards.Builder.recipe(RECIPEKEY("smelting/bronze_ingot_from_smelting_bronze_blend"))
-            .addRecipe(RECIPEKEY("smelting/bronze_ingot_from_blasting_bronze_blend"))
-            .addRecipe(RECIPEKEY("crafting/bronze_blend_block")))
+        .rewards(AdvancementRewards.Builder.recipe(recipeKey("smelting/bronze_ingot_from_smelting_bronze_blend"))
+            .addRecipe(recipeKey("smelting/bronze_ingot_from_blasting_bronze_blend"))
+            .addRecipe(recipeKey("crafting/bronze_blend_block")))
         .build(ID("bronze/got_bronze_blend"));
 
     advancementConsumer.accept(gotBronzeBlendAdvancement);
@@ -112,22 +112,22 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
         )
         .addCriterion("got_bronze_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.BRONZE_INGOT.get()))
         .rewards(AdvancementRewards.Builder
-            .recipe(RECIPEKEY("crafting/bronze_helmet"))
-            .addRecipe(RECIPEKEY("crafting/bronze_chestplate"))
-            .addRecipe(RECIPEKEY("crafting/bronze_leggings"))
-            .addRecipe(RECIPEKEY("crafting/bronze_boots"))
-            .addRecipe(RECIPEKEY("crafting/bronze_sword"))
-            .addRecipe(RECIPEKEY("crafting/bronze_pickaxe"))
-            .addRecipe(RECIPEKEY("crafting/bronze_shovel"))
-            .addRecipe(RECIPEKEY("crafting/bronze_axe"))
-            .addRecipe(RECIPEKEY("crafting/bronze_hoe"))
-            .addRecipe(RECIPEKEY("crafting/bronze_sickle"))
-            .addRecipe(RECIPEKEY("crafting/bronze_nugget"))
-            .addRecipe(RECIPEKEY("smelting/bronze_nugget_from_smelting"))
-            .addRecipe(RECIPEKEY("smelting/bronze_nugget_from_blasting"))
-            .addRecipe(RECIPEKEY("crafting/bronze_door"))
-            .addRecipe(RECIPEKEY("crafting/bronze_trapdoor"))
-            .addRecipe(RECIPEKEY("crafting/bronze_block")))
+            .recipe(recipeKey("crafting/bronze_helmet"))
+            .addRecipe(recipeKey("crafting/bronze_chestplate"))
+            .addRecipe(recipeKey("crafting/bronze_leggings"))
+            .addRecipe(recipeKey("crafting/bronze_boots"))
+            .addRecipe(recipeKey("crafting/bronze_sword"))
+            .addRecipe(recipeKey("crafting/bronze_pickaxe"))
+            .addRecipe(recipeKey("crafting/bronze_shovel"))
+            .addRecipe(recipeKey("crafting/bronze_axe"))
+            .addRecipe(recipeKey("crafting/bronze_hoe"))
+            .addRecipe(recipeKey("crafting/bronze_sickle"))
+            .addRecipe(recipeKey("crafting/bronze_nugget"))
+            .addRecipe(recipeKey("smelting/bronze_nugget_from_smelting"))
+            .addRecipe(recipeKey("smelting/bronze_nugget_from_blasting"))
+            .addRecipe(recipeKey("crafting/bronze_door"))
+            .addRecipe(recipeKey("crafting/bronze_trapdoor"))
+            .addRecipe(recipeKey("crafting/bronze_block")))
         .build(ID("bronze/got_bronze_ingot"));
 
     advancementConsumer.accept(gotBronzeIngotAdvancement);
@@ -191,15 +191,15 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
     AdvancementHolder unlockBronzeBlendFromRawTin = Advancement.Builder.recipeAdvancement()
         .parent(ResourceLocation.withDefaultNamespace("recipes/root"))
         .addCriterion("got_raw_tin", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.RAW_TIN.get()))
-        .rewards(AdvancementRewards.Builder.recipe(RECIPEKEY("crafting/bronze_blend_from_copper_and_tin"))
-            .addRecipe(RECIPEKEY("crafting/raw_tin_block"))
-            .addRecipe(RECIPEKEY("crafting/tin_ingot"))
-            .addRecipe(RECIPEKEY("smelting/tin_ingot_from_smelting_deepslate_tin_ore"))
-            .addRecipe(RECIPEKEY("smelting/tin_ingot_from_smelting_raw_tin"))
-            .addRecipe(RECIPEKEY("smelting/tin_ingot_from_smelting_tin_ore"))
-            .addRecipe(RECIPEKEY("smelting/tin_ingot_from_blasting_deepslate_tin_ore"))
-            .addRecipe(RECIPEKEY("smelting/tin_ingot_from_blasting_raw_tin"))
-            .addRecipe(RECIPEKEY("smelting/tin_ingot_from_blasting_tin_ore")))
+        .rewards(AdvancementRewards.Builder.recipe(recipeKey("crafting/bronze_blend_from_copper_and_tin"))
+            .addRecipe(recipeKey("crafting/raw_tin_block"))
+            .addRecipe(recipeKey("crafting/tin_ingot"))
+            .addRecipe(recipeKey("smelting/tin_ingot_from_smelting_deepslate_tin_ore"))
+            .addRecipe(recipeKey("smelting/tin_ingot_from_smelting_raw_tin"))
+            .addRecipe(recipeKey("smelting/tin_ingot_from_smelting_tin_ore"))
+            .addRecipe(recipeKey("smelting/tin_ingot_from_blasting_deepslate_tin_ore"))
+            .addRecipe(recipeKey("smelting/tin_ingot_from_blasting_raw_tin"))
+            .addRecipe(recipeKey("smelting/tin_ingot_from_blasting_tin_ore")))
         .build(ID("recipes/got_raw_tin"));
 
     advancementConsumer.accept(unlockBronzeBlendFromRawTin);
@@ -207,7 +207,7 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
     AdvancementHolder unlockRawTinFromRawTinBlock = Advancement.Builder.recipeAdvancement()
         .parent(ResourceLocation.withDefaultNamespace("recipes/root"))
         .addCriterion("got_raw_tin_block", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.RAW_TIN_BLOCK.get()))
-        .rewards(AdvancementRewards.Builder.recipe(RECIPEKEY("crafting/raw_tin")))
+        .rewards(AdvancementRewards.Builder.recipe(recipeKey("crafting/raw_tin")))
         .build(ID("recipes/got_raw_tin_block"));
 
     advancementConsumer.accept(unlockRawTinFromRawTinBlock);
@@ -215,7 +215,7 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
     AdvancementHolder unlockBronzeBlendFromBronzeBlendBlock = Advancement.Builder.recipeAdvancement()
         .parent(ResourceLocation.withDefaultNamespace("recipes/root"))
         .addCriterion("got_bronze_blend_block", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.BRONZE_BLEND_BLOCK.get()))
-        .rewards(AdvancementRewards.Builder.recipe(RECIPEKEY("crafting/bronze_blend")))
+        .rewards(AdvancementRewards.Builder.recipe(recipeKey("crafting/bronze_blend")))
         .build(ID("recipes/got_bronze_blend_block"));
 
     advancementConsumer.accept(unlockBronzeBlendFromBronzeBlendBlock);
@@ -223,7 +223,7 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
     AdvancementHolder unlockBronzeIngotFromBronzeBlock = Advancement.Builder.recipeAdvancement()
         .parent(ResourceLocation.withDefaultNamespace("recipes/root"))
         .addCriterion("got_bronze_block", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.BRONZE_BLOCK.get()))
-        .rewards(AdvancementRewards.Builder.recipe(RECIPEKEY("crafting/bronze_ingot")))
+        .rewards(AdvancementRewards.Builder.recipe(recipeKey("crafting/bronze_ingot")))
         .build(ID("recipes/got_bronze_block"));
 
     advancementConsumer.accept(unlockBronzeIngotFromBronzeBlock);
@@ -231,7 +231,7 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
     AdvancementHolder unlockBronzeIngotFromBronzeNugget = Advancement.Builder.recipeAdvancement()
         .parent(ResourceLocation.withDefaultNamespace("recipes/root"))
         .addCriterion("got_bronze_nuggets", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.BRONZE_NUGGET.get()))
-        .rewards(AdvancementRewards.Builder.recipe(RECIPEKEY("crafting/bronze_ingot_from_nuggets")))
+        .rewards(AdvancementRewards.Builder.recipe(recipeKey("crafting/bronze_ingot_from_nuggets")))
         .build(ID("recipes/got_bronze_nuggets"));
 
     advancementConsumer.accept(unlockBronzeIngotFromBronzeNugget);
