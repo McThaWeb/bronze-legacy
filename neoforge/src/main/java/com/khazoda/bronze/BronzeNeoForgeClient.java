@@ -17,6 +17,7 @@ public class BronzeNeoForgeClient {
 
     public void onClientSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            /* Needed until fabric datagen can create the "render_type": "minecraft:translucent/cutout" fields that neoforge needs */
             ItemBlockRenderTypes.setRenderLayer(MainRegistry.BRONZE_DOOR.get(), ChunkSectionLayer.CUTOUT);
             ItemBlockRenderTypes.setRenderLayer(MainRegistry.BRONZE_TRAPDOOR.get(), ChunkSectionLayer.CUTOUT);
             ItemBlockRenderTypes.setRenderLayer(MainRegistry.TIN_FRAMED_GLASS.get(), ChunkSectionLayer.TRANSLUCENT);

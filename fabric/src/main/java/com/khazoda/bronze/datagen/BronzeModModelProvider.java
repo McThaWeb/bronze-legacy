@@ -17,7 +17,7 @@ public class BronzeModModelProvider extends FabricModelProvider {
 
   @Override
   public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {
-    // Simple cube blocks + items
+    // Standard Block Models
     blockModelGenerators.createTrivialCube(MainRegistry.TIN_BLOCK.get());
     blockModelGenerators.createTrivialCube(MainRegistry.BRONZE_BLOCK.get());
     blockModelGenerators.createTrivialCube(MainRegistry.TIN_ORE.get());
@@ -27,11 +27,14 @@ public class BronzeModModelProvider extends FabricModelProvider {
     blockModelGenerators.createTrivialCube(MainRegistry.CHISELED_TIN.get());
     blockModelGenerators.createTrivialCube(MainRegistry.RAW_TIN_BLOCK.get());
 
-    // Door / trapdoor blocks + items
+    // RenderType Cutout
     blockModelGenerators.createTrapdoor(MainRegistry.BRONZE_TRAPDOOR.get());
     blockModelGenerators.createDoor(MainRegistry.BRONZE_DOOR.get());
-    
-    // Cut tin family (block, stairs, and slab) blocks + items
+
+    // RenderType Translucent
+    blockModelGenerators.createTrivialCube(MainRegistry.TIN_FRAMED_GLASS.get());
+
+    // Cut Tin Block Family
     BlockFamilyProvider cutTin = blockModelGenerators.family(MainRegistry.CUT_TIN.get());
     cutTin.stairs(MainRegistry.CUT_TIN_STAIRS.get());
     cutTin.slab(MainRegistry.CUT_TIN_SLAB.get());
