@@ -35,10 +35,10 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
     @Override
     protected RecipeProvider createRecipeProvider(HolderLookup.Provider registryLookup, RecipeOutput output) {
         return new RecipeProvider(registryLookup, output) {
-            private static TagKey<Item> BRONZE_INGOT_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "ingots/bronze"));
-            private static TagKey<Item> RAW_TIN_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "raw_materials/tin"));
-            private static TagKey<Item> TIN_INGOT_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "ingots/tin"));
-            private static TagKey<Item> TIN_BLOCK_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "storage_blocks/tin"));
+            private static final TagKey<Item> BRONZE_INGOT_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "ingots/bronze"));
+            private static final TagKey<Item> RAW_TIN_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "raw_materials/tin"));
+            private static final TagKey<Item> TIN_INGOT_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "ingots/tin"));
+            private static final TagKey<Item> TIN_BLOCK_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "storage_blocks/tin"));
             @Override
             public void buildRecipes() {
                 HolderGetter<Item> registryEntryLookup = registryLookup.lookupOrThrow(Registries.ITEM);
@@ -49,6 +49,7 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
                 nineBlockStorageRecipes(RecipeCategory.MISC, MainRegistry.BRONZE_NUGGET.get(), RecipeCategory.MISC, MainRegistry.BRONZE_INGOT.get(), "crafting/bronze_ingot_from_nuggets", "bronze_ingot", "crafting/bronze_nugget", "bronze_nugget");
                 nineBlockStorageRecipes(RecipeCategory.MISC, MainRegistry.RAW_TIN.get(), RecipeCategory.BUILDING_BLOCKS, MainRegistry.RAW_TIN_BLOCK.get(), "crafting/raw_tin_block", null, "crafting/raw_tin", "raw_tin");
                 nineBlockStorageRecipes(RecipeCategory.MISC, MainRegistry.TIN_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, MainRegistry.TIN_BLOCK.get(), "crafting/tin_block", null, "crafting/tin_ingot", "tin_ingot");
+                nineBlockStorageRecipes(RecipeCategory.MISC, MainRegistry.TIN_NUGGET.get(), RecipeCategory.MISC, MainRegistry.TIN_INGOT.get(), "crafting/tin_ingot_from_nuggets", "tin_ingot", "crafting/tin_nugget", "tin_nugget");
 
                 // mixing blend
                 ShapelessRecipeBuilder
@@ -111,6 +112,19 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
                     .blasting(Ingredient.of(MainRegistry.DEEPSLATE_TIN_ORE.get()), RecipeCategory.MISC, MainRegistry.TIN_INGOT.get(), 0.7F, 100)
                     .unlockedBy(getHasName(MainRegistry.DEEPSLATE_TIN_ORE.get()), has(MainRegistry.DEEPSLATE_TIN_ORE.get()))
                     .save(output, recipeKey("smelting/tin_ingot_from_blasting_deepslate_tin_ore"));
+
+//                SimpleCookingRecipeBuilder
+//                    .smelting(
+//                        Ingredient.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.TIN_SHOVEL.get(), MainRegistry.TIN_AXE.get(), MainRegistry.TIN_HOE.get(), MainRegistry.TIN_SWORD.get(), MainRegistry.TIN_HELMET.get(), MainRegistry.TIN_CHESTPLATE.get(), MainRegistry.TIN_LEGGINGS.get(), MainRegistry.TIN_BOOTS.get(), MainRegistry.TIN_HORSE_ARMOR.get()),
+//                        RecipeCategory.MISC, MainRegistry.TIN_NUGGET.get(), 0.1F, 200)
+//                    .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
+//                    .save(output, recipeKey("smelting/tin_nugget_from_smelting"));
+//                SimpleCookingRecipeBuilder
+//                    .smelting(
+//                        Ingredient.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.TIN_SHOVEL.get(), MainRegistry.TIN_AXE.get(), MainRegistry.TIN_HOE.get(), MainRegistry.TIN_SWORD.get(), MainRegistry.TIN_HELMET.get(), MainRegistry.TIN_CHESTPLATE.get(), MainRegistry.TIN_LEGGINGS.get(), MainRegistry.TIN_BOOTS.get(), MainRegistry.TIN_HORSE_ARMOR.get()),
+//                        RecipeCategory.MISC, MainRegistry.TIN_NUGGET.get(), 0.1F, 100)
+//                    .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
+//                    .save(output, recipeKey("smelting/tin_nugget_from_blasting"));
                 
                 // stonecutting
                 SingleItemRecipeBuilder
