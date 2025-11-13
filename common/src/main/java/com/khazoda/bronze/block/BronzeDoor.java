@@ -12,12 +12,12 @@ import net.minecraft.world.level.material.PushReaction;
 
 public class BronzeDoor extends DoorBlock {
   public BronzeDoor(ResourceKey<Block> id) {
-    super(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(5.5f).noOcclusion()
+    super(BlockSetType.IRON, BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops()
+        .strength(5.5f)
         .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
         .pushReaction(PushReaction.DESTROY)
         .mapColor(MapColor.GOLD)
         .sound(SoundType.METAL)
-        .requiresCorrectToolForDrops()
         .setId(id));
   }
 }

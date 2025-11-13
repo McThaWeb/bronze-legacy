@@ -31,7 +31,9 @@ public class BronzeKnifeFarmersDelight extends Item {
 
   public static Properties createProperties(ResourceKey<Item> id) {
     ToolMaterial material = BronzeMaterial.BRONZE_TOOL_MATERIAL;
-    return new Item.Properties().durability(material.durability()).repairable(material.repairItems()).enchantable(material.enchantmentValue()).attributes(createAttributes(material, 0.5F, -2.0F)).setId(id);
+    return new Item.Properties().durability(material.durability()).repairable(material.repairItems()).enchantable(material.enchantmentValue())
+        .attributes(createAttributes(material, 0.5F, -2.0F))
+        .setId(id);
   }
 
   public BronzeKnifeFarmersDelight(Properties properties) {

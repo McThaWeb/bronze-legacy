@@ -9,11 +9,10 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 public class TinFramedGlass extends TransparentBlock {
   public TinFramedGlass(ResourceKey<Block> id) {
-    super(BlockBehaviour.Properties.of()
+    super(BlockBehaviour.Properties.of().noOcclusion()
         .instrument(NoteBlockInstrument.HAT)
         .strength(0.7F)
         .sound(SoundType.GLASS)
-        .noOcclusion()
         .isValidSpawn((state, world, pos, type) -> false)
         .isRedstoneConductor((state, world, pos) -> false)
         .isSuffocating((state, world, pos) -> false)

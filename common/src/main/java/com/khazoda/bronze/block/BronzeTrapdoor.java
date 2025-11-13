@@ -10,6 +10,10 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 public class BronzeTrapdoor extends TrapDoorBlock {
   public BronzeTrapdoor(ResourceKey<Block> id) {
-    super(BlockSetType.IRON, BlockBehaviour.Properties.of().strength(3.5f).instrument(NoteBlockInstrument.IRON_XYLOPHONE).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion().setId(id));
+    super(BlockSetType.IRON, BlockBehaviour.Properties.of().noOcclusion().requiresCorrectToolForDrops()
+        .strength(3.5f)
+        .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+        .sound(SoundType.METAL)
+        .setId(id));
   }
 }
