@@ -54,8 +54,9 @@ public class MainRegistry {
   public static final Supplier<Item> BRONZE_LEGGINGS = registerItem("bronze_leggings", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.LEGGINGS).setId(id)));
   public static final Supplier<Item> BRONZE_BOOTS = registerItem("bronze_boots", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.BOOTS).setId(id)));
 
-  /* Farmers Delight Knife Compatibility - add the conditional registration code from init() here when using datagen*/
-  public static Supplier<Item> BRONZE_KNIFE = registerItem("bronze_knife", id -> new BronzeKnifeFarmersDelight(BronzeKnifeFarmersDelight.createProperties(id)));
+  /* Farmers Delight Knife Compatibility - swap commented line with uncommented line for datagen run, and comment out the line in init() */
+  //  public static Supplier<Item> BRONZE_KNIFE = registerItem("bronze_knife", id -> new BronzeKnifeFarmersDelight(BronzeKnifeFarmersDelight.createProperties(id)));
+  public static Supplier<Item> BRONZE_KNIFE;
 
 
   /* ==========[ Block Registration ]========== */
@@ -96,9 +97,9 @@ public class MainRegistry {
   public static final ResourceKey<PlacedFeature> TIN_ORE_SMALL_PLACED_KEY = ResourceKey.create(Registries.PLACED_FEATURE, ID("ore_tin_small"));
 
   public static void init() {
-//    if (mod_loaded_farmersdelight) {
-//      BRONZE_KNIFE = registerItem("bronze_knife", id -> new BronzeKnifeFarmersDelight(BronzeKnifeFarmersDelight.createProperties(id)));
-//    }
+    if (mod_loaded_farmersdelight) {
+      BRONZE_KNIFE = registerItem("bronze_knife", id -> new BronzeKnifeFarmersDelight(BronzeKnifeFarmersDelight.createProperties(id)));
+    }
   }
 
 
