@@ -32,6 +32,9 @@
   "rewards": {
     "recipes": [
       "bronze:crafting/tin_block",
+      "bronze:crafting/bronze_nugget",
+      "bronze:smelting/bronze_nugget_from_smelting",
+      "bronze:smelting/bronze_nugget_from_blasting",
       "bronze:stonecutting/cut_tin",
       "bronze:stonecutting/tin_framed_glass",
       "bronze:stonecutting/chiseled_tin_from_tin_block",
