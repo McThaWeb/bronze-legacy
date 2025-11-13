@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "group": "cut_tin",
-  "ingredient": "#c:storage_blocks/tin",
-  "result": {
-    "count": 9,
-    "id": "bronze:cut_tin"
-  }
-}
