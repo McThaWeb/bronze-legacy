@@ -1,6 +1,5 @@
 package com.khazoda.bronze.item;
 
-import com.khazoda.bronze.material.BronzeMaterial;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -26,17 +25,16 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarvedPumpkinBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BronzeKnifeFarmersDelight extends Item {
+public class FarmersDelightKnife extends Item {
   public static final TagKey<Item> KNIVES = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("farmersdelight", "tools/knives"));
 
-  public static Properties createProperties(ResourceKey<Item> id) {
-    ToolMaterial material = BronzeMaterial.BRONZE_TOOL_MATERIAL;
+  public static Properties createProperties(ResourceKey<Item> id, ToolMaterial material) {
     return new Item.Properties().durability(material.durability()).repairable(material.repairItems()).enchantable(material.enchantmentValue())
         .attributes(createAttributes(material, 0.5F, -2.0F))
         .setId(id);
   }
 
-  public BronzeKnifeFarmersDelight(Properties properties) {
+  public FarmersDelightKnife(Properties properties) {
     super(properties);
   }
 

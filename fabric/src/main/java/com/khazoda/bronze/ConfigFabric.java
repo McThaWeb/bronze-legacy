@@ -21,7 +21,7 @@ public final class ConfigFabric {
     JsonElement e = root.get(config.key());
     return switch (config.type()) {
       case BOOL -> (T) Boolean.valueOf(e.getAsBoolean());
-      case NUM -> (T) e.getAsNumber();
+      case NUM -> (T) Integer.valueOf(e.getAsInt());
       case STR -> (T) e.getAsString();
     };
   }

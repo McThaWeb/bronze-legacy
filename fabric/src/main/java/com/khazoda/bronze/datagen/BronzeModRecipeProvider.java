@@ -113,18 +113,18 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
                     .unlockedBy(getHasName(MainRegistry.DEEPSLATE_TIN_ORE.get()), has(MainRegistry.DEEPSLATE_TIN_ORE.get()))
                     .save(output, recipeKey("smelting/tin_ingot_from_blasting_deepslate_tin_ore"));
 
-//                SimpleCookingRecipeBuilder
-//                    .smelting(
-//                        Ingredient.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.TIN_SHOVEL.get(), MainRegistry.TIN_AXE.get(), MainRegistry.TIN_HOE.get(), MainRegistry.TIN_SWORD.get(), MainRegistry.TIN_HELMET.get(), MainRegistry.TIN_CHESTPLATE.get(), MainRegistry.TIN_LEGGINGS.get(), MainRegistry.TIN_BOOTS.get(), MainRegistry.TIN_HORSE_ARMOR.get()),
-//                        RecipeCategory.MISC, MainRegistry.TIN_NUGGET.get(), 0.1F, 200)
-//                    .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
-//                    .save(output, recipeKey("smelting/tin_nugget_from_smelting"));
-//                SimpleCookingRecipeBuilder
-//                    .smelting(
-//                        Ingredient.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.TIN_SHOVEL.get(), MainRegistry.TIN_AXE.get(), MainRegistry.TIN_HOE.get(), MainRegistry.TIN_SWORD.get(), MainRegistry.TIN_HELMET.get(), MainRegistry.TIN_CHESTPLATE.get(), MainRegistry.TIN_LEGGINGS.get(), MainRegistry.TIN_BOOTS.get(), MainRegistry.TIN_HORSE_ARMOR.get()),
-//                        RecipeCategory.MISC, MainRegistry.TIN_NUGGET.get(), 0.1F, 100)
-//                    .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
-//                    .save(output, recipeKey("smelting/tin_nugget_from_blasting"));
+                SimpleCookingRecipeBuilder
+                    .smelting(
+                        Ingredient.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.TIN_SHOVEL.get(), MainRegistry.TIN_AXE.get(), MainRegistry.TIN_HOE.get(), MainRegistry.TIN_SWORD.get(), MainRegistry.TIN_HELMET.get(), MainRegistry.TIN_CHESTPLATE.get(), MainRegistry.TIN_LEGGINGS.get(), MainRegistry.TIN_BOOTS.get(), MainRegistry.TIN_HORSE_ARMOR.get()),
+                        RecipeCategory.MISC, MainRegistry.TIN_NUGGET.get(), 0.1F, 200)
+                    .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
+                    .save(output, recipeKey("smelting/tin_nugget_from_smelting"));
+                SimpleCookingRecipeBuilder
+                    .smelting(
+                        Ingredient.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.TIN_SHOVEL.get(), MainRegistry.TIN_AXE.get(), MainRegistry.TIN_HOE.get(), MainRegistry.TIN_SWORD.get(), MainRegistry.TIN_HELMET.get(), MainRegistry.TIN_CHESTPLATE.get(), MainRegistry.TIN_LEGGINGS.get(), MainRegistry.TIN_BOOTS.get(), MainRegistry.TIN_HORSE_ARMOR.get()),
+                        RecipeCategory.MISC, MainRegistry.TIN_NUGGET.get(), 0.1F, 100)
+                    .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
+                    .save(output, recipeKey("smelting/tin_nugget_from_blasting"));
                 
                 // stonecutting
                 SingleItemRecipeBuilder
@@ -174,6 +174,84 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
                     .save(output, recipeKey("stonecutting/tin_tiles_from_cut_tin"));
 
                 // equipment
+                // Tin
+                ShapedRecipeBuilder
+                    .shaped(registryEntryLookup, RecipeCategory.TOOLS, MainRegistry.TIN_AXE.get())
+                    .pattern("TT")
+                    .pattern("T#")
+                    .pattern(" #")
+                    .define('T', Ingredient.of(tagHolder(TIN_INGOT_TAG)))
+                    .define('#', Ingredient.of(tagHolder(ConventionalItemTags.WOODEN_RODS)))
+                    .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
+                    .save(output, recipeKey("crafting/tin_axe"));
+                ShapedRecipeBuilder
+                    .shaped(registryEntryLookup, RecipeCategory.COMBAT, MainRegistry.TIN_BOOTS.get())
+                    .pattern("T T")
+                    .pattern("T T")
+                    .define('T', Ingredient.of(tagHolder(TIN_INGOT_TAG)))
+                    .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
+                    .save(output, recipeKey("crafting/tin_boots"));
+                ShapedRecipeBuilder
+                    .shaped(registryEntryLookup, RecipeCategory.COMBAT, MainRegistry.TIN_CHESTPLATE.get())
+                    .pattern("T T")
+                    .pattern("TTT")
+                    .pattern("TTT")
+                    .define('T', Ingredient.of(tagHolder(TIN_INGOT_TAG)))
+                    .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
+                    .save(output, recipeKey("crafting/tin_chestplate"));
+                ShapedRecipeBuilder
+                    .shaped(registryEntryLookup, RecipeCategory.COMBAT, MainRegistry.TIN_HELMET.get())
+                    .pattern("TTT")
+                    .pattern("T T")
+                    .define('T', Ingredient.of(tagHolder(TIN_INGOT_TAG)))
+                    .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
+                    .save(output, recipeKey("crafting/tin_helmet"));
+                ShapedRecipeBuilder
+                    .shaped(registryEntryLookup, RecipeCategory.TOOLS, MainRegistry.TIN_HOE.get())
+                    .pattern("TT")
+                    .pattern(" #")
+                    .pattern(" #")
+                    .define('T', Ingredient.of(tagHolder(TIN_INGOT_TAG)))
+                    .define('#', Ingredient.of(tagHolder(ConventionalItemTags.WOODEN_RODS)))
+                    .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
+                    .save(output, recipeKey("crafting/tin_hoe"));
+                ShapedRecipeBuilder
+                    .shaped(registryEntryLookup, RecipeCategory.COMBAT, MainRegistry.TIN_LEGGINGS.get())
+                    .pattern("TTT")
+                    .pattern("T T")
+                    .pattern("T T")
+                    .define('T', Ingredient.of(tagHolder(TIN_INGOT_TAG)))
+                    .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
+                    .save(output, recipeKey("crafting/tin_leggings"));
+                ShapedRecipeBuilder
+                    .shaped(registryEntryLookup, RecipeCategory.TOOLS, MainRegistry.TIN_PICKAXE.get())
+                    .pattern("TTT")
+                    .pattern(" # ")
+                    .pattern(" # ")
+                    .define('T', Ingredient.of(tagHolder(TIN_INGOT_TAG)))
+                    .define('#', Ingredient.of(tagHolder(ConventionalItemTags.WOODEN_RODS)))
+                    .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
+                    .save(output, recipeKey("crafting/tin_pickaxe"));
+                ShapedRecipeBuilder
+                    .shaped(registryEntryLookup, RecipeCategory.TOOLS, MainRegistry.TIN_SHOVEL.get())
+                    .pattern("T")
+                    .pattern("#")
+                    .pattern("#")
+                    .define('T', Ingredient.of(tagHolder(TIN_INGOT_TAG)))
+                    .define('#', Ingredient.of(tagHolder(ConventionalItemTags.WOODEN_RODS)))
+                    .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
+                    .save(output, recipeKey("crafting/tin_shovel"));
+                ShapedRecipeBuilder
+                    .shaped(registryEntryLookup, RecipeCategory.COMBAT, MainRegistry.TIN_SWORD.get())
+                    .pattern("T")
+                    .pattern("T")
+                    .pattern("#")
+                    .define('T', Ingredient.of(tagHolder(TIN_INGOT_TAG)))
+                    .define('#', Ingredient.of(tagHolder(ConventionalItemTags.WOODEN_RODS)))
+                    .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
+                    .save(output, recipeKey("crafting/tin_sword"));
+                
+                // Bronze
                 ShapedRecipeBuilder
                     .shaped(registryEntryLookup, RecipeCategory.TOOLS, MainRegistry.BRONZE_AXE.get())
                     .pattern("BB")

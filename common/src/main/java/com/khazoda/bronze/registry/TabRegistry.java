@@ -22,25 +22,40 @@ public class TabRegistry {
             output.accept(MainRegistry.BRONZE_PICKAXE.get());
             output.accept(MainRegistry.BRONZE_SHOVEL.get());
             output.accept(MainRegistry.BRONZE_HOE.get());
-            output.accept(MainRegistry.SICKLE.get());
-            if(mod_loaded_farmersdelight) output.accept(MainRegistry.BRONZE_KNIFE.get());
             output.accept(MainRegistry.BRONZE_HELMET.get());
             output.accept(MainRegistry.BRONZE_CHESTPLATE.get());
             output.accept(MainRegistry.BRONZE_LEGGINGS.get());
             output.accept(MainRegistry.BRONZE_BOOTS.get());
+            output.accept(MainRegistry.TIN_SWORD.get());
+            output.accept(MainRegistry.TIN_AXE.get());
+            output.accept(MainRegistry.TIN_PICKAXE.get());
+            output.accept(MainRegistry.TIN_SHOVEL.get());
+            output.accept(MainRegistry.TIN_HOE.get());
+            output.accept(MainRegistry.TIN_HELMET.get());
+            output.accept(MainRegistry.TIN_CHESTPLATE.get());
+            output.accept(MainRegistry.TIN_LEGGINGS.get());
+            output.accept(MainRegistry.TIN_BOOTS.get());
+            output.accept(MainRegistry.SICKLE.get());
+            if(mod_loaded_farmersdelight) output.accept(MainRegistry.BRONZE_KNIFE.get());
+            if(mod_loaded_farmersdelight) output.accept(MainRegistry.TIN_KNIFE.get());
+
+            output.accept(MainRegistry.RAW_TIN.get());
+            output.accept(MainRegistry.TIN_NUGGET.get());
+            output.accept(MainRegistry.TIN_INGOT.get());
+            output.accept(MainRegistry.TIN_HORSE_ARMOR.get());
+
+            output.accept(MainRegistry.BRONZE_BLEND.get());
+            output.accept(MainRegistry.BRONZE_NUGGET.get());
+            output.accept(MainRegistry.BRONZE_INGOT.get());
+            output.accept(MainRegistry.BRONZE_HORSE_ARMOR.get());
+
             output.accept(MainRegistry.TIN_BLOCK_ITEM.get());
             output.accept(MainRegistry.BRONZE_BLOCK_ITEM.get());
             output.accept(MainRegistry.RAW_TIN_BLOCK_ITEM.get());
             output.accept(MainRegistry.BRONZE_BLEND_BLOCK_ITEM.get());
             output.accept(MainRegistry.TIN_ORE_ITEM.get());
             output.accept(MainRegistry.DEEPSLATE_TIN_ORE_ITEM.get());
-            output.accept(MainRegistry.RAW_TIN.get());
-            output.accept(MainRegistry.BRONZE_BLEND.get());
-            output.accept(MainRegistry.TIN_INGOT.get());
-            output.accept(MainRegistry.TIN_NUGGET.get());
-            output.accept(MainRegistry.BRONZE_INGOT.get());
-            output.accept(MainRegistry.BRONZE_NUGGET.get());
-            output.accept(MainRegistry.BRONZE_HORSE_ARMOR.get());
+
             output.accept(MainRegistry.BRONZE_DOOR_ITEM.get());
             output.accept(MainRegistry.BRONZE_TRAPDOOR_ITEM.get());
             output.accept(MainRegistry.TIN_FRAMED_GLASS_ITEM.get());

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "#c:rods/wooden",
+    "T": "#c:ingots/tin"
+  },
+  "pattern": [
+    "TT",
+    "T#",
+    " #"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bronze:tin_axe"
+  }
+}

@@ -24,7 +24,7 @@ public class BronzeMaterial {
 
   public static final TagKey<Item> BRONZE_INGOT_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/bronze"));
   
-  public static final ArmorMaterial BRONZE_ARMOR_MATERIAL = new ArmorMaterial(350,
+  public static final ArmorMaterial BRONZE = new ArmorMaterial(24,
     Util.make(new EnumMap<>(ArmorType.class), map -> {
       map.put(ArmorType.BOOTS, 2);
       map.put(ArmorType.LEGGINGS, 5);
@@ -33,5 +33,5 @@ public class BronzeMaterial {
       map.put(ArmorType.BODY, 6);
     }), 12, SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0.0F, BRONZE_INGOT_TAG, BRONZE_ARMOR_MATERIAL_KEY);
   
-  public static final ToolMaterial BRONZE_TOOL_MATERIAL = new ToolMaterial(BlockTags.INCORRECT_FOR_IRON_TOOL, 350, 7.0F, 2.5F, 15, BRONZE_INGOT_TAG);
+  public static final ToolMaterial TOOL = new ToolMaterial(BlockTags.INCORRECT_FOR_IRON_TOOL, 500, 6.0F, 2.0F, 14, BRONZE_INGOT_TAG);
 }

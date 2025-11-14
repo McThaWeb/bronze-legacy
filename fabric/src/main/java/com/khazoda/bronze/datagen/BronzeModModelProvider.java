@@ -1,6 +1,7 @@
 package com.khazoda.bronze.datagen;
 
 import com.khazoda.bronze.material.BronzeMaterial;
+import com.khazoda.bronze.material.TinMaterial;
 import com.khazoda.bronze.registry.MainRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
@@ -45,6 +46,19 @@ public class BronzeModModelProvider extends FabricModelProvider {
     itemModelGenerators.generateFlatItem(MainRegistry.RAW_TIN.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_NUGGET.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_INGOT.get(), ModelTemplates.FLAT_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.TIN_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.TIN_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.TIN_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.TIN_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.TIN_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.TIN_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.TIN_KNIFE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+
+    itemModelGenerators.generateTrimmableItem(MainRegistry.TIN_HELMET.get(), TinMaterial.TIN_ARMOR_MATERIAL_KEY, ItemModelGenerators.TRIM_PREFIX_HELMET, false);
+    itemModelGenerators.generateTrimmableItem(MainRegistry.TIN_CHESTPLATE.get(), TinMaterial.TIN_ARMOR_MATERIAL_KEY, ItemModelGenerators.TRIM_PREFIX_CHESTPLATE, false);
+    itemModelGenerators.generateTrimmableItem(MainRegistry.TIN_LEGGINGS.get(), TinMaterial.TIN_ARMOR_MATERIAL_KEY, ItemModelGenerators.TRIM_PREFIX_LEGGINGS, false);
+    itemModelGenerators.generateTrimmableItem(MainRegistry.TIN_BOOTS.get(), TinMaterial.TIN_ARMOR_MATERIAL_KEY, ItemModelGenerators.TRIM_PREFIX_BOOTS, false);
+
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_BLEND.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_NUGGET.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_INGOT.get(), ModelTemplates.FLAT_ITEM);

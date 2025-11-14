@@ -1,5 +1,7 @@
 package com.khazoda.bronze.item;
 
+import com.khazoda.bronze.ConfigCommon;
+import com.khazoda.bronze.platform.Services;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -19,11 +21,15 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.NetherWartBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 import static com.khazoda.bronze.Constants.ID;
+import static com.khazoda.bronze.Constants.LOG;
 
 public class Sickle extends Item {
   public static final TagKey<Block> SICKLE_AOE_BLOCKS = TagKey.create(Registries.BLOCK, ID("sickle_aoe"));
@@ -36,13 +42,14 @@ public class Sickle extends Item {
   public boolean canDestroyBlock(ItemStack stack, BlockState state, Level level, BlockPos pos, LivingEntity entity) {
     /* Prevent crop blocks from being destroyed */
     return super.canDestroyBlock(stack, state, level, pos, entity)
-            && !(state.getBlock() instanceof CropBlock) && !(state.getBlock() instanceof NetherWartBlock);
+        && !(state.getBlock() instanceof CropBlock) && !(state.getBlock() instanceof NetherWartBlock);
   }
 
   @Override
   public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miningEntity) {
     if (state.is(SICKLE_AOE_BLOCKS)) {
       aoeMow(level, miningEntity, state, state, pos, 0);
+      stack.hurtAndBreak(1, miningEntity, EquipmentSlot.MAINHAND);
     }
     /* Damage sickle when mining blocks */
     Tool tool = stack.get(DataComponents.TOOL);
@@ -68,8 +75,8 @@ public class Sickle extends Item {
       level.playSound(null, pos, state.getSoundType().getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
       player.swing(context.getHand());
       ((ServerLevel) level).sendParticles(ParticleTypes.SWEEP_ATTACK,
-              pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-              1, 0, 0, 0, 0);
+          pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+          1, 0, 0, 0, 0);
 
       stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
       aoeHarvest(level, player, state, state, pos, 0);
@@ -96,16 +103,29 @@ public class Sickle extends Item {
 
             // Add block breaking particles
             ((ServerLevel) level).sendParticles(new BlockParticleOption(
-                            ParticleTypes.BLOCK, currentBlockState),
-                    pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                    5, 0.2, 0.2, 0.2, 0.1);
+                    ParticleTypes.BLOCK, currentBlockState),
+                pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                5, 0.2, 0.2, 0.2, 0.1);
           }
         } else {
           Block.dropResources(currentBlockState, level, pos, null, entity, ItemStack.EMPTY);
           level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
         }
       }
-      if (iteration < 4) {
+
+      int sickle_harvest_range = 4;
+      try {
+        int loadedValue = Services.CONFIG.get(ConfigCommon.Configs.SICKLE_HARVEST_RANGE);
+        if (loadedValue >= 1 && loadedValue <= 10) {
+          sickle_harvest_range = loadedValue;
+        } else {
+          LOG.warn("[config/bronze.json] sickle_harvest_range must be between 1-10, got: {}. Defaulting to 4", loadedValue);
+        }
+      } catch (Error e) {
+        LOG.error("[config/bronze.json] sickle_harvest_range config value is invalid. It must be a value from 1-10. Defaulting to '4'");
+      }
+
+      if (iteration < sickle_harvest_range - 1) {
         aoeMow(level, entity, initialBlockState, level.getBlockState(pos.east()), pos.east(), iteration + 1);
         aoeMow(level, entity, initialBlockState, level.getBlockState(pos.north()), pos.north(), iteration + 1);
         aoeMow(level, entity, initialBlockState, level.getBlockState(pos.west()), pos.west(), iteration + 1);
@@ -124,11 +144,11 @@ public class Sickle extends Item {
         case CropBlock cropBlock -> {
           // Dynamically find the age property
           ageProperty = initialBlockState.getProperties().stream()
-                  .filter(p -> p instanceof IntegerProperty)
-                  .filter(p -> p.getName().equals("age"))
-                  .map(p -> (IntegerProperty) p)
-                  .findFirst()
-                  .orElse(null);
+              .filter(p -> p instanceof IntegerProperty)
+              .filter(p -> p.getName().equals("age"))
+              .map(p -> (IntegerProperty) p)
+              .findFirst()
+              .orElse(null);
           if (ageProperty == null) yield false;
 
           int currentAge = initialBlockState.getValue(ageProperty);
@@ -148,9 +168,9 @@ public class Sickle extends Item {
         if (level.getBlockState(pos).getBlock() == currentBlockState.getBlock()) {
           currentBlockState.getBlock().playerDestroy(level, player, pos, currentBlockState, null, player.getMainHandItem());
           ((ServerLevel) level).sendParticles(new BlockParticleOption(
-                          ParticleTypes.BLOCK, currentBlockState),
-                  pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                  5, 0.2, 0.2, 0.2, 0.1);
+                  ParticleTypes.BLOCK, currentBlockState),
+              pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+              5, 0.2, 0.2, 0.2, 0.1);
           tryExtraHappyLootChance(level, pos);
         }
       } else {
@@ -178,7 +198,7 @@ public class Sickle extends Item {
         // Play a happy congratulatory note block sound with random pitch :)
         float randomPitch = 1.0F + level.random.nextFloat() * 0.5F; // Random pitch between 1.0 and 1.5
         level.playSound(null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D,
-                SoundEvents.NOTE_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, randomPitch);
+            SoundEvents.NOTE_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, randomPitch);
       }
       /* 1/150 chance to drop mob loot */
       if (level.random.nextInt(150) == 0) {
@@ -202,7 +222,7 @@ public class Sickle extends Item {
         // Play a lower bell sound with random pitch
         float spookyPitch = 0.8F + level.random.nextFloat() * 0.3F; // Random pitch between 0.8 and 1.1
         level.playSound(null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D,
-                SoundEvents.NOTE_BLOCK_BELL, SoundSource.BLOCKS, 1.0F, spookyPitch);
+            SoundEvents.NOTE_BLOCK_BELL, SoundSource.BLOCKS, 1.0F, spookyPitch);
       }
     }
   }

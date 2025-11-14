@@ -42,9 +42,19 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
         )
         .addCriterion("got_tin_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.TIN_INGOT.get()))
         .rewards(AdvancementRewards.Builder.recipe(recipeKey("crafting/tin_block"))
-            .addRecipe(recipeKey("crafting/bronze_nugget"))
-            .addRecipe(recipeKey("smelting/bronze_nugget_from_smelting"))
-            .addRecipe(recipeKey("smelting/bronze_nugget_from_blasting"))
+            .addRecipe(recipeKey("crafting/tin_nugget"))
+            .addRecipe(recipeKey("smelting/tin_nugget_from_smelting"))
+            .addRecipe(recipeKey("smelting/tin_nugget_from_blasting"))
+            .addRecipe(recipeKey("crafting/tin_helmet"))
+            .addRecipe(recipeKey("crafting/tin_chestplate"))
+            .addRecipe(recipeKey("crafting/tin_leggings"))
+            .addRecipe(recipeKey("crafting/tin_boots"))
+            .addRecipe(recipeKey("crafting/tin_sword"))
+            .addRecipe(recipeKey("crafting/tin_pickaxe"))
+            .addRecipe(recipeKey("crafting/tin_shovel"))
+            .addRecipe(recipeKey("crafting/tin_axe"))
+            .addRecipe(recipeKey("crafting/tin_hoe"))
+            .addRecipe(recipeKey("crafting/tin_nugget"))
             .addRecipe(recipeKey("stonecutting/cut_tin"))
             .addRecipe(recipeKey("stonecutting/tin_framed_glass"))
             .addRecipe(recipeKey("stonecutting/chiseled_tin_from_tin_block"))
@@ -124,10 +134,10 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
             .addRecipe(recipeKey("crafting/bronze_shovel"))
             .addRecipe(recipeKey("crafting/bronze_axe"))
             .addRecipe(recipeKey("crafting/bronze_hoe"))
-            .addRecipe(recipeKey("crafting/bronze_sickle"))
             .addRecipe(recipeKey("crafting/bronze_nugget"))
             .addRecipe(recipeKey("smelting/bronze_nugget_from_smelting"))
             .addRecipe(recipeKey("smelting/bronze_nugget_from_blasting"))
+            .addRecipe(recipeKey("crafting/bronze_sickle"))
             .addRecipe(recipeKey("crafting/bronze_door"))
             .addRecipe(recipeKey("crafting/bronze_trapdoor"))
             .addRecipe(recipeKey("crafting/bronze_block")))
@@ -238,5 +248,15 @@ public class BronzeAdvancements implements Consumer<Consumer<AdvancementHolder>>
         .build(ID("recipes/got_bronze_nuggets"));
 
     advancementConsumer.accept(unlockBronzeIngotFromBronzeNugget);
+
+    AdvancementHolder unlockTinIngotFromTinNugget = Advancement.Builder.recipeAdvancement()
+        .parent(ResourceLocation.withDefaultNamespace("recipes/root"))
+        .addCriterion("got_tin_nuggets", InventoryChangeTrigger.TriggerInstance.hasItems(MainRegistry.TIN_NUGGET.get()))
+        .rewards(AdvancementRewards.Builder.recipe(recipeKey("crafting/tin_ingot_from_nuggets")))
+        .build(ID("recipes/got_tin_nuggets"));
+
+    advancementConsumer.accept(unlockTinIngotFromTinNugget);
+
+
   }
 }

@@ -16,6 +16,10 @@ public class BronzeModItemTagProvider extends FabricTagProvider.ItemTagProvider 
   @Override
   protected void addTags(HolderLookup.Provider provider) {
     valueLookupBuilder(ItemTags.TRIMMABLE_ARMOR)
+        .add(MainRegistry.TIN_HELMET.get())
+        .add(MainRegistry.TIN_CHESTPLATE.get())
+        .add(MainRegistry.TIN_LEGGINGS.get())
+        .add(MainRegistry.TIN_BOOTS.get())
         .add(MainRegistry.BRONZE_HELMET.get())
         .add(MainRegistry.BRONZE_CHESTPLATE.get())
         .add(MainRegistry.BRONZE_LEGGINGS.get())

@@ -3,9 +3,10 @@ package com.khazoda.bronze.registry;
 import com.khazoda.bronze.BronzeCommon;
 import com.khazoda.bronze.Constants;
 import com.khazoda.bronze.block.*;
-import com.khazoda.bronze.item.BronzeKnifeFarmersDelight;
+import com.khazoda.bronze.item.FarmersDelightKnife;
 import com.khazoda.bronze.item.Sickle;
 import com.khazoda.bronze.material.BronzeMaterial;
+import com.khazoda.bronze.material.TinMaterial;
 import com.khazoda.bronze.registry.helper.Reggie;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -22,7 +23,6 @@ import net.minecraft.world.level.material.MapColor;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static com.khazoda.bronze.BronzeCommon.mod_loaded_farmersdelight;
 import static com.khazoda.bronze.Constants.*;
 
 
@@ -34,30 +34,44 @@ public class MainRegistry {
   private static final TagKey<Block> SICKLE_MINEABLE_TAG = TagKey.create(Registries.BLOCK, Constants.ID("mineable/sickle"));
 
   /* ==========[ Item Registration ]========== */
+  // Tin
   public static final Supplier<Item> RAW_TIN = registerItem("raw_tin");
   public static final Supplier<Item> TIN_NUGGET = registerItem("tin_nugget");
   public static final Supplier<Item> TIN_INGOT = registerItem("tin_ingot");
+  public static final Supplier<Item> TIN_HORSE_ARMOR = registerItem("tin_horse_armor", id -> new Item(new Item.Properties().horseArmor(TinMaterial.ARMOR).setId(id)));
+
+  public static final Supplier<Item> TIN_SWORD = registerItem("tin_sword", id -> new Item(new Item.Properties().sword(TinMaterial.TOOL, 3.0F, -2.4F).setId(id)));
+  public static final Supplier<Item> TIN_AXE = registerItem("tin_axe", id -> new AxeItem(TinMaterial.TOOL, 5.5F, -3.1F, new Item.Properties().setId(id)));
+  public static final Supplier<Item> TIN_PICKAXE = registerItem("tin_pickaxe", id -> new Item(new Item.Properties().pickaxe(TinMaterial.TOOL, 1.0F, -2.8F).setId(id)));
+  public static final Supplier<Item> TIN_SHOVEL = registerItem("tin_shovel", id -> new ShovelItem(TinMaterial.TOOL, 1.5F, -3.0F, new Item.Properties().setId(id)));
+  public static final Supplier<Item> TIN_HOE = registerItem("tin_hoe", id -> new HoeItem(TinMaterial.TOOL, -2.0F, 0.0F, new Item.Properties().setId(id)));
+
+  public static final Supplier<Item> TIN_HELMET = registerItem("tin_helmet", id -> new Item(new Item.Properties().humanoidArmor(TinMaterial.ARMOR, ArmorType.HELMET).setId(id)));
+  public static final Supplier<Item> TIN_CHESTPLATE = registerItem("tin_chestplate", id -> new Item(new Item.Properties().humanoidArmor(TinMaterial.ARMOR, ArmorType.CHESTPLATE).setId(id)));
+  public static final Supplier<Item> TIN_LEGGINGS = registerItem("tin_leggings", id -> new Item(new Item.Properties().humanoidArmor(TinMaterial.ARMOR, ArmorType.LEGGINGS).setId(id)));
+  public static final Supplier<Item> TIN_BOOTS = registerItem("tin_boots", id -> new Item(new Item.Properties().humanoidArmor(TinMaterial.ARMOR, ArmorType.BOOTS).setId(id)));
+
+  // Bronze
   public static final Supplier<Item> BRONZE_BLEND = registerItem("bronze_blend");
   public static final Supplier<Item> BRONZE_NUGGET = registerItem("bronze_nugget");
   public static final Supplier<Item> BRONZE_INGOT = registerItem("bronze_ingot");
+  public static final Supplier<Item> BRONZE_HORSE_ARMOR = registerItem("bronze_horse_armor", id -> new Item(new Item.Properties().horseArmor(BronzeMaterial.BRONZE).setId(id)));
 
-  public static final Supplier<Item> BRONZE_HORSE_ARMOR = registerItem("bronze_horse_armor", id -> new Item(new Item.Properties().horseArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL).setId(id)));
+  public static final Supplier<Item> BRONZE_SWORD = registerItem("bronze_sword", id -> new Item(new Item.Properties().sword(BronzeMaterial.TOOL, 3.0F, -2.4F).setId(id)));
+  public static final Supplier<Item> BRONZE_AXE = registerItem("bronze_axe", id -> new AxeItem(BronzeMaterial.TOOL, 5.5F, -3.1F, new Item.Properties().setId(id)));
+  public static final Supplier<Item> BRONZE_PICKAXE = registerItem("bronze_pickaxe", id -> new Item(new Item.Properties().pickaxe(BronzeMaterial.TOOL, 1.0F, -2.8F).setId(id)));
+  public static final Supplier<Item> BRONZE_SHOVEL = registerItem("bronze_shovel", id -> new ShovelItem(BronzeMaterial.TOOL, 1.5F, -3.0F, new Item.Properties().setId(id)));
+  public static final Supplier<Item> BRONZE_HOE = registerItem("bronze_hoe", id -> new HoeItem(BronzeMaterial.TOOL, -2.0F, 0.0F, new Item.Properties().setId(id)));
+  public static final Supplier<Item> SICKLE = registerItem("bronze_sickle", id -> new Sickle(new Item.Properties().tool(BronzeMaterial.TOOL, SICKLE_MINEABLE_TAG, 1.5f, -3.0f, 0.0f).setId(id)));
 
-  public static final Supplier<Item> BRONZE_SWORD = registerItem("bronze_sword", id -> new Item(new Item.Properties().sword(BronzeMaterial.BRONZE_TOOL_MATERIAL, 3.0F, -2.4F).setId(id)));
-  public static final Supplier<Item> BRONZE_AXE = registerItem("bronze_axe", id -> new AxeItem(BronzeMaterial.BRONZE_TOOL_MATERIAL, 5.5F, -3.1F, new Item.Properties().setId(id)));
-  public static final Supplier<Item> BRONZE_PICKAXE = registerItem("bronze_pickaxe", id -> new Item(new Item.Properties().pickaxe(BronzeMaterial.BRONZE_TOOL_MATERIAL, 1.0F, -2.8F).setId(id)));
-  public static final Supplier<Item> BRONZE_SHOVEL = registerItem("bronze_shovel", id -> new ShovelItem(BronzeMaterial.BRONZE_TOOL_MATERIAL, 1.5F, -3.0F, new Item.Properties().setId(id)));
-  public static final Supplier<Item> BRONZE_HOE = registerItem("bronze_hoe", id -> new HoeItem(BronzeMaterial.BRONZE_TOOL_MATERIAL, -2.0F, 0.0F, new Item.Properties().setId(id)));
-  public static final Supplier<Item> SICKLE = registerItem("bronze_sickle", id -> new Sickle(new Item.Properties().tool(BronzeMaterial.BRONZE_TOOL_MATERIAL, SICKLE_MINEABLE_TAG, 1.5f, -3.0f, 0.0f).setId(id)));
+  public static final Supplier<Item> BRONZE_HELMET = registerItem("bronze_helmet", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE, ArmorType.HELMET).setId(id)));
+  public static final Supplier<Item> BRONZE_CHESTPLATE = registerItem("bronze_chestplate", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE, ArmorType.CHESTPLATE).setId(id)));
+  public static final Supplier<Item> BRONZE_LEGGINGS = registerItem("bronze_leggings", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE, ArmorType.LEGGINGS).setId(id)));
+  public static final Supplier<Item> BRONZE_BOOTS = registerItem("bronze_boots", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE, ArmorType.BOOTS).setId(id)));
 
-  public static final Supplier<Item> BRONZE_HELMET = registerItem("bronze_helmet", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.HELMET).setId(id)));
-  public static final Supplier<Item> BRONZE_CHESTPLATE = registerItem("bronze_chestplate", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.CHESTPLATE).setId(id)));
-  public static final Supplier<Item> BRONZE_LEGGINGS = registerItem("bronze_leggings", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.LEGGINGS).setId(id)));
-  public static final Supplier<Item> BRONZE_BOOTS = registerItem("bronze_boots", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE_ARMOR_MATERIAL, ArmorType.BOOTS).setId(id)));
-
-  /* Farmers Delight Knife Compatibility - swap commented line with uncommented line for datagen run, and comment out the line in init() */
-    public static Supplier<Item> BRONZE_KNIFE = registerItem("bronze_knife", id -> new BronzeKnifeFarmersDelight(BronzeKnifeFarmersDelight.createProperties(id)));
-//  public static Supplier<Item> BRONZE_KNIFE;
+  // Farmers Delight Knife Compatibility
+  public static Supplier<Item> BRONZE_KNIFE = registerItem("bronze_knife", id -> new FarmersDelightKnife(FarmersDelightKnife.createProperties(id, BronzeMaterial.TOOL)));
+  public static Supplier<Item> TIN_KNIFE = registerItem("tin_knife", id -> new FarmersDelightKnife(FarmersDelightKnife.createProperties(id, TinMaterial.TOOL)));
 
 
   /* ==========[ Block Registration ]========== */
@@ -98,9 +112,6 @@ public class MainRegistry {
   public static final ResourceKey<PlacedFeature> TIN_ORE_SMALL_PLACED_KEY = ResourceKey.create(Registries.PLACED_FEATURE, ID("ore_tin_small"));
 
   public static void init() {
-//    if (mod_loaded_farmersdelight) {
-//      BRONZE_KNIFE = registerItem("bronze_knife", id -> new BronzeKnifeFarmersDelight(BronzeKnifeFarmersDelight.createProperties(id)));
-//    }
   }
 
 
@@ -114,6 +125,7 @@ public class MainRegistry {
   private static Supplier<Item> registerItem(String name) {
     return ITEM_REGISTRAR.register(name, () -> new Item(new Item.Properties().setId(itemKey(name))));
   }
+
   /* Register Item with dedicated Item class from factory */
   private static <T extends Item> Supplier<Item> registerItem(String name, Function<ResourceKey<Item>, T> factory) {
     return ITEM_REGISTRAR.register(name, () -> factory.apply(itemKey(name)));
@@ -123,10 +135,12 @@ public class MainRegistry {
   private static Supplier<Block> registerBlock(String name, Function<ResourceKey<Block>, BlockBehaviour.Properties> props) {
     return BLOCK_REGISTRAR.register(name, () -> new Block(props.apply(blockKey(name))));
   }
+
   /* Register Block with dedicated Block supplier */
   private static Supplier<Block> registerBlock(String name, Supplier<Block> supplier) {
     return BLOCK_REGISTRAR.register(name, supplier);
   }
+
   /* Register Block with a bunch of predefined property parameters */
   private static Supplier<Block> registerBlock(String name, float destroyTime, float explosionResistance, MapColor mapColor, NoteBlockInstrument instrument, SoundType soundType) {
     return registerBlock(name, id -> BlockBehaviour.Properties.of().strength(destroyTime, explosionResistance).mapColor(mapColor).instrument(instrument).sound(soundType).requiresCorrectToolForDrops().setId(id));
