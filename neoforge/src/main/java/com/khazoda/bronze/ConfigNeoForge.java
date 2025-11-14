@@ -18,8 +18,7 @@ public final class ConfigNeoForge {
     for (ConfigCommon.Config k : ALL_CONFIGS) {
       ModConfigSpec.ConfigValue<?> handle = switch (k.type()) {
         case BOOL -> b.define(k.key(), (Boolean) k.def());
-        case NUM -> b.defineInRange(k.key(), ((Number) k.def()).intValue(),
-            0, Integer.MAX_VALUE);
+        case NUM -> b.define(k.key(),((Number) k.def()).intValue());
         case STR -> b.define(k.key(), (String) k.def());
       };
       map.put(k, handle);
