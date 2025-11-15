@@ -24,32 +24,31 @@ public class LootTableModifier {
   private static final Map<ResourceKey<LootTable>, LootConfig> LOOT_TABLE_CONFIGS = new HashMap<>();
 
   static {
-    LOOT_TABLE_CONFIGS.put(ABANDONED_MINESHAFT, new LootConfig(List.of(MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_INGOT.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(ANCIENT_CITY, new LootConfig(List.of(MainRegistry.BRONZE_LEGGINGS.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(BASTION_BRIDGE, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NUGGET.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(BASTION_OTHER, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NUGGET.get(), MainRegistry.BRONZE_BLOCK_ITEM.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(BASTION_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_BLOCK_ITEM.get()), false, true));
+    LOOT_TABLE_CONFIGS.put(ABANDONED_MINESHAFT, new LootConfig(List.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.BRONZE_INGOT.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(ANCIENT_CITY, new LootConfig(List.of(MainRegistry.BRONZE_LEGGINGS.get(), MainRegistry.BRONZE_HOE.get()), true, true));
+    LOOT_TABLE_CONFIGS.put(BASTION_BRIDGE, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NUGGET.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(BASTION_OTHER, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NUGGET.get(), MainRegistry.BRONZE_BLOCK_ITEM.get()), true, true));
+    LOOT_TABLE_CONFIGS.put(BASTION_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_BLOCK_ITEM.get()), false, false));
     LOOT_TABLE_CONFIGS.put(BURIED_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_INGOT.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_CORRIDOR, new LootConfig(List.of(MainRegistry.BRONZE_AXE.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(DESERT_PYRAMID, new LootConfig(List.of(MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.BRONZE_INGOT.get()), false, true));
+    LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_CORRIDOR, new LootConfig(List.of(MainRegistry.BRONZE_AXE.get(), MainRegistry.TIN_AXE.get()), true, true));
+    LOOT_TABLE_CONFIGS.put(DESERT_PYRAMID, new LootConfig(List.of(MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.BRONZE_INGOT.get()), false, false));
     LOOT_TABLE_CONFIGS.put(END_CITY_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_SHOVEL.get(), MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_HELMET.get(), MainRegistry.BRONZE_CHESTPLATE.get(), MainRegistry.BRONZE_LEGGINGS.get(), MainRegistry.BRONZE_BOOTS.get(), MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_INTERSECTION, new LootConfig(List.of(MainRegistry.BRONZE_BLOCK_ITEM.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(JUNGLE_TEMPLE, new LootConfig(List.of(MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.BRONZE_INGOT.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(NETHER_BRIDGE, new LootConfig(List.of(MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.BRONZE_INGOT.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(PILLAGER_OUTPOST, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_REWARD_COMMON, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_REWARD_OMINOUS_RARE, new LootConfig(List.of(MainRegistry.BRONZE_BLOCK_ITEM.get()), false, true));
+    LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_INTERSECTION, new LootConfig(List.of(MainRegistry.BRONZE_BLOCK_ITEM.get(), MainRegistry.TIN_BLOCK_ITEM.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(JUNGLE_TEMPLE, new LootConfig(List.of(MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.BRONZE_INGOT.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(NETHER_BRIDGE, new LootConfig(List.of(MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.BRONZE_INGOT.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(PILLAGER_OUTPOST, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_REWARD_OMINOUS_RARE, new LootConfig(List.of(MainRegistry.BRONZE_BLOCK_ITEM.get()), false, false));
     LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_REWARD_RARE, new LootConfig(List.of(MainRegistry.BRONZE_AXE.get(), MainRegistry.BRONZE_CHESTPLATE.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(RUINED_PORTAL, new LootConfig(List.of(MainRegistry.BRONZE_NUGGET.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(SHIPWRECK_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NUGGET.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(SIMPLE_DUNGEON, new LootConfig(List.of(MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.BRONZE_INGOT.get()), false, true));
+    LOOT_TABLE_CONFIGS.put(RUINED_PORTAL, new LootConfig(List.of(MainRegistry.BRONZE_NUGGET.get(), MainRegistry.TIN_NUGGET.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(SHIPWRECK_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NUGGET.get(), MainRegistry.TIN_INGOT.get(), MainRegistry.TIN_NUGGET.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(SIMPLE_DUNGEON, new LootConfig(List.of(MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.BRONZE_INGOT.get()), false, false));
     LOOT_TABLE_CONFIGS.put(STRONGHOLD_CORRIDOR, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_HELMET.get(), MainRegistry.BRONZE_CHESTPLATE.get(), MainRegistry.BRONZE_LEGGINGS.get(), MainRegistry.BRONZE_BOOTS.get(), MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(STRONGHOLD_CROSSING, new LootConfig(List.of(MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_INGOT.get()), false, true));
+    LOOT_TABLE_CONFIGS.put(STRONGHOLD_CROSSING, new LootConfig(List.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.BRONZE_INGOT.get()), false, false));
     LOOT_TABLE_CONFIGS.put(VILLAGE_ARMORER, new LootConfig(List.of(MainRegistry.BRONZE_HELMET.get(), MainRegistry.BRONZE_INGOT.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(VILLAGE_TAIGA_HOUSE, new LootConfig(List.of(MainRegistry.BRONZE_NUGGET.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(VILLAGE_TOOLSMITH, new LootConfig(List.of(MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_SHOVEL.get(), MainRegistry.BRONZE_INGOT.get()), false, true));
+    LOOT_TABLE_CONFIGS.put(VILLAGE_TAIGA_HOUSE, new LootConfig(List.of(MainRegistry.BRONZE_NUGGET.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(VILLAGE_TOOLSMITH, new LootConfig(List.of(MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_SHOVEL.get(), MainRegistry.BRONZE_INGOT.get()), false, false));
     LOOT_TABLE_CONFIGS.put(VILLAGE_WEAPONSMITH, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_AXE.get(), MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_HELMET.get(), MainRegistry.BRONZE_CHESTPLATE.get(), MainRegistry.BRONZE_LEGGINGS.get(), MainRegistry.BRONZE_BOOTS.get(), MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get()), false, true));
-    LOOT_TABLE_CONFIGS.put(WOODLAND_MANSION, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get()), false, true));
+    LOOT_TABLE_CONFIGS.put(WOODLAND_MANSION, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get()), false, false));
   }
 
   public static void modifyLootTable(ResourceLocation id, LootTable.Builder tableBuilder) {
