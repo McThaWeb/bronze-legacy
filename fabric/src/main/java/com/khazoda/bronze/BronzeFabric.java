@@ -23,5 +23,7 @@ public class BronzeFabric implements ModInitializer {
     }
     BronzeCommon.postInit();
     BronzeCommon.REGISTRARS.registerAll();
+
+    FabricLootTableModifier.init();
   }
 }
