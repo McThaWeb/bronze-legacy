@@ -57,5 +57,16 @@
   "advancement.bronze.got_cut_tin.description": "Obtain a Block of Cut Tin",
   "resource_pack.bronze.bronze_ctm.name": "Bronze Mod Connected Textures",
   "resource_pack.bronze.bronze_ctm.description": "Adds connected textures support for some blocks (built-in: Bronze)",
-  "item.bronze.bronze_knife": "Bronze Knife"
+  "item.bronze.bronze_knife": "Bronze Knife",
+  "item.bronze.tin_nugget": "Tin Nugget",
+  "item.bronze.tin_helmet": "Tin Helmet",
+  "item.bronze.tin_chestplate": "Tin Chestplate",
+  "item.bronze.tin_leggings": "Tin Leggings",
+  "item.bronze.tin_boots": "Tin Boots",
+  "item.bronze.tin_sword": "Tin Sword",
+  "item.bronze.tin_axe": "Tin Axe",
+  "item.bronze.tin_pickaxe": "Tin Pickaxe",
+  "item.bronze.tin_shovel": "Tin Shovel",
+  "item.bronze.tin_hoe": "Tin Hoe",
+  "item.bronze.tin_horse_armor": "Tin Horse Armor"
 }
