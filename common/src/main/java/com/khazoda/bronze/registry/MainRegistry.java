@@ -8,6 +8,7 @@ import com.khazoda.bronze.item.Sickle;
 import com.khazoda.bronze.material.BronzeMaterial;
 import com.khazoda.bronze.material.TinMaterial;
 import com.khazoda.bronze.registry.helper.Reggie;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
@@ -62,7 +63,10 @@ public class MainRegistry {
   public static final Supplier<Item> BRONZE_PICKAXE = registerItem("bronze_pickaxe", id -> new Item(new Item.Properties().pickaxe(BronzeMaterial.TOOL, 1.0F, -2.8F).setId(id)));
   public static final Supplier<Item> BRONZE_SHOVEL = registerItem("bronze_shovel", id -> new ShovelItem(BronzeMaterial.TOOL, 1.5F, -3.0F, new Item.Properties().setId(id)));
   public static final Supplier<Item> BRONZE_HOE = registerItem("bronze_hoe", id -> new HoeItem(BronzeMaterial.TOOL, -2.0F, 0.0F, new Item.Properties().setId(id)));
-  public static final Supplier<Item> SICKLE = registerItem("bronze_sickle", id -> new Sickle(new Item.Properties().tool(BronzeMaterial.TOOL, SICKLE_MINEABLE_TAG, 1.5f, -3.0f, 0.0f).setId(id)));
+
+//  public static final Supplier<Item> SICKLE = registerItem("bronze_sickle", id -> new Sickle(new Item.Properties().tool(BronzeMaterial.TOOL, SICKLE_MINEABLE_TAG, 1.5f, -3.0f, 0.0f).setId(id)));
+  public static final Supplier<Item> SICKLE = registerItem(
+      "bronze_sickle", id -> new Sickle(new Item.Properties().durability(238).component(DataComponents.TOOL, Sickle.createToolProperties()).setId(id)));
 
   public static final Supplier<Item> BRONZE_HELMET = registerItem("bronze_helmet", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE, ArmorType.HELMET).setId(id)));
   public static final Supplier<Item> BRONZE_CHESTPLATE = registerItem("bronze_chestplate", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE, ArmorType.CHESTPLATE).setId(id)));

@@ -10,6 +10,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -28,14 +29,37 @@ import net.minecraft.world.level.block.NetherWartBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
+import java.util.List;
+
 import static com.khazoda.bronze.Constants.ID;
 import static com.khazoda.bronze.Constants.LOG;
 
+/**
+ *
+ * <b>A sickle has two main functions, mowing and harvesting</b>
+ * <br>Mowing: removing grass, leaf litter, ferns (or anything else defined in the {@link #SICKLE_MOW_BLOCKS} block tag) in an area
+ * <br>Harvesting: breaking and replanting crops, with a low chance of extra loot drops
+ * <br>
+ * <br><b>Definitions</b>
+ * <br> <i>Grasslike</i>: a block that is defined in {@link #SICKLE_MOW_BLOCKS}
+ * <br> <i>SHR</i>: stands for sickle_harvest_range, an integer defined in config which denotes how large the mowing/harvesting area is
+ * <br>
+ * <br><b>Left and Right click do different things based on what is being interacted with</b>
+ * <br>Left Click Crops: cancel interaction, crop remains intact ({@link #canDestroyBlock})
+ * <br>Left Click Grasslikes: break all grasslikes in SHR ({@link #aoeMow})
+ * <br>Right Click Crops: break and replant all crop blocks in SHR ({@link #aoeHarvest})
+ * <br>Right Click Grasslikes/Flowers: break all flowers in SHR, leave grasslikes intact
+ */
 public class Sickle extends Item {
-  public static final TagKey<Block> SICKLE_AOE_BLOCKS = TagKey.create(Registries.BLOCK, ID("sickle_aoe"));
+  public static final TagKey<Block> SICKLE_MOW_BLOCKS = TagKey.create(Registries.BLOCK, ID("sickle_mow"));
+  public static final TagKey<Block> SICKLE_PLUCK_BLOCKS = TagKey.create(Registries.BLOCK, ID("sickle_pluck"));
 
   public Sickle(Properties properties) {
     super(properties);
+  }
+
+  public static Tool createToolProperties() {
+    return new Tool(List.of(), 1.0F, 1, true);
   }
 
   @Override
@@ -47,20 +71,20 @@ public class Sickle extends Item {
 
   @Override
   public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miningEntity) {
-    if (state.is(SICKLE_AOE_BLOCKS)) {
-      aoeMow(level, miningEntity, state, state, pos, 0);
-      stack.hurtAndBreak(1, miningEntity, EquipmentSlot.MAINHAND);
-    }
-    /* Damage sickle when mining blocks */
     Tool tool = stack.get(DataComponents.TOOL);
-    if (tool == null) {
-      return false;
-    }
-    if (!level.isClientSide() && state.getDestroySpeed(level, pos) != 0.0f && tool.damagePerBlock() > 0) {
+    if (tool == null) return false;
+
+    if (state.is(SICKLE_MOW_BLOCKS)) {
+      // Sickle Mowing
+      aoeMow(level, miningEntity, state, state, pos, SICKLE_MOW_BLOCKS, 0);
+      stack.hurtAndBreak(1, miningEntity, EquipmentSlot.MAINHAND);
+    } else if (!level.isClientSide() && !state.is(BlockTags.FIRE) && state.getDestroySpeed(level, pos) != 0.0f && tool.damagePerBlock() > 0) {
+      // Normal Tool Damage
       stack.hurtAndBreak(tool.damagePerBlock(), miningEntity, EquipmentSlot.MAINHAND);
     }
     return true;
   }
+
 
   @Override
   public InteractionResult useOn(UseOnContext context) {
@@ -81,6 +105,16 @@ public class Sickle extends Item {
       stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
       aoeHarvest(level, player, state, state, pos, 0);
       return InteractionResult.SUCCESS;
+    } else if ((state.is(SICKLE_PLUCK_BLOCKS))) {
+      level.playSound(null, pos, state.getSoundType().getBreakSound(), SoundSource.BLOCKS, 0.8F, 1.0F);
+      level.playSound(null, pos, SoundEvents.BUBBLE_POP, SoundSource.BLOCKS, 1.0F, 1.0F);
+      player.swing(context.getHand());
+      ((ServerLevel) level).sendParticles(ParticleTypes.SWEEP_ATTACK,
+          pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+          1, 0, 0, 0, 0);
+      stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
+      aoeMow(level, player, state, state, pos, SICKLE_PLUCK_BLOCKS, 0);
+      return InteractionResult.SUCCESS;
     }
     return InteractionResult.PASS;
   }
@@ -90,12 +124,12 @@ public class Sickle extends Item {
     stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
   }
 
-  private static void aoeMow(Level level, LivingEntity entity, BlockState initialBlockState, BlockState currentBlockState, BlockPos pos, int iteration) {
+  private static void aoeMow(Level level, LivingEntity entity, BlockState initialBlockState, BlockState currentBlockState, BlockPos pos, TagKey<Block> blocksToMow, int iteration) {
     if (level.isClientSide()) return;
     /* Cut Grass */
-    if (initialBlockState.is(SICKLE_AOE_BLOCKS)) {
+    if (initialBlockState.is(blocksToMow)) {
       Block currentBlock = currentBlockState.getBlock();
-      if (currentBlockState.is(SICKLE_AOE_BLOCKS)) {
+      if (currentBlockState.is(blocksToMow)) {
         if (entity instanceof Player player) {
           if (level.getBlockState(pos).getBlock() == currentBlock) {
             currentBlock.playerDestroy(level, player, pos, currentBlockState, null, player.getMainHandItem());
@@ -126,10 +160,10 @@ public class Sickle extends Item {
       }
 
       if (iteration < sickle_harvest_range - 1) {
-        aoeMow(level, entity, initialBlockState, level.getBlockState(pos.east()), pos.east(), iteration + 1);
-        aoeMow(level, entity, initialBlockState, level.getBlockState(pos.north()), pos.north(), iteration + 1);
-        aoeMow(level, entity, initialBlockState, level.getBlockState(pos.west()), pos.west(), iteration + 1);
-        aoeMow(level, entity, initialBlockState, level.getBlockState(pos.south()), pos.south(), iteration + 1);
+        aoeMow(level, entity, initialBlockState, level.getBlockState(pos.east()), pos.east(), blocksToMow, iteration + 1);
+        aoeMow(level, entity, initialBlockState, level.getBlockState(pos.north()), pos.north(), blocksToMow, iteration + 1);
+        aoeMow(level, entity, initialBlockState, level.getBlockState(pos.west()), pos.west(), blocksToMow, iteration + 1);
+        aoeMow(level, entity, initialBlockState, level.getBlockState(pos.south()), pos.south(), blocksToMow, iteration + 1);
       }
     }
   }
