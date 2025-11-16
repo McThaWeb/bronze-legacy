@@ -28,7 +28,7 @@ public class BronzeMaterial {
     Util.make(new EnumMap<>(ArmorType.class), map -> {
       map.put(ArmorType.BOOTS, 2);
       map.put(ArmorType.LEGGINGS, 5);
-      map.put(ArmorType.CHESTPLATE, 7);
+      map.put(ArmorType.CHESTPLATE, 6);
       map.put(ArmorType.HELMET, 2);
       map.put(ArmorType.BODY, 6);
     }), 12, SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0.0F, BRONZE_INGOT_TAG, BRONZE_ARMOR_MATERIAL_KEY);
