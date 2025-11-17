@@ -2,6 +2,9 @@ package com.khazoda.bronze.item;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -19,18 +22,32 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Tool;
+import net.minecraft.world.item.component.Weapon;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarvedPumpkinBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.List;
+
 public class FarmersDelightKnife extends Item {
   public static final TagKey<Item> KNIVES = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("farmersdelight", "tools/knives"));
+  public static final TagKey<Block> MINEABLE_WITH_KNIFE = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("farmersdelight", "mineable/knife"));
 
   public static Properties createProperties(ResourceKey<Item> id, ToolMaterial material) {
+    HolderGetter<Block> holderGetter = BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.BLOCK);
+
     return new Item.Properties().durability(material.durability()).repairable(material.repairItems()).enchantable(material.enchantmentValue())
         .attributes(createAttributes(material, 0.5F, -2.0F))
+        .component(DataComponents.TOOL, new Tool(
+            List.of(
+                Tool.Rule.deniesDrops(holderGetter.getOrThrow(material.incorrectBlocksForDrops())),
+                Tool.Rule.minesAndDrops(holderGetter.getOrThrow(MINEABLE_WITH_KNIFE), material.speed())
+            ), 1.0F, 1, false))
+        .component(DataComponents.WEAPON, new Weapon(2))
         .setId(id);
   }
 
@@ -44,6 +61,7 @@ public class FarmersDelightKnife extends Item {
         .add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
         .build();
   }
+
 
   @Override
   public InteractionResult useOn(UseOnContext context) {
