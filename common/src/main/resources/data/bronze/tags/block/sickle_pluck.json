@@ -2,7 +2,6 @@
   "replace": false,
   "values": [
     "#minecraft:small_flowers",
-    "#c:flowers/small",
-x`
+    "#c:flowers/small"
   ]
 }
