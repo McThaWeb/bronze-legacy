@@ -2,7 +2,7 @@ package com.khazoda.bronze.registry;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -51,7 +51,7 @@ public class LootTableModifier {
     LOOT_TABLE_CONFIGS.put(WOODLAND_MANSION, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get()), false, false));
   }
 
-  public static void modifyLootTable(ResourceLocation id, LootTable.Builder tableBuilder) {
+  public static void modifyLootTable(Identifier id, LootTable.Builder tableBuilder) {
     ResourceKey<LootTable> key = ResourceKey.create(LOOT_TABLE, id);
     LootConfig config = LOOT_TABLE_CONFIGS.get(key);
     if (config != null) {

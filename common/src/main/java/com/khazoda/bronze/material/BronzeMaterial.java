@@ -1,14 +1,15 @@
 package com.khazoda.bronze.material;
 
 import com.khazoda.bronze.Constants;
-import net.minecraft.Util;
+
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Util;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.equipment.ArmorMaterial;
@@ -19,10 +20,10 @@ import java.util.EnumMap;
 
 public class BronzeMaterial {
 
-  public static final ResourceKey<? extends Registry<EquipmentAsset>> ROOT_ID = ResourceKey.createRegistryKey(ResourceLocation.withDefaultNamespace("equipment_asset"));
+  public static final ResourceKey<? extends Registry<EquipmentAsset>> ROOT_ID = ResourceKey.createRegistryKey(Identifier.withDefaultNamespace("equipment_asset"));
   public static final ResourceKey<EquipmentAsset> BRONZE_ARMOR_MATERIAL_KEY = ResourceKey.create(ROOT_ID, Constants.ID("bronze"));
 
-  public static final TagKey<Item> BRONZE_INGOT_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/bronze"));
+  public static final TagKey<Item> BRONZE_INGOT_TAG = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("c", "ingots/bronze"));
   
   public static final ArmorMaterial BRONZE = new ArmorMaterial(24,
     Util.make(new EnumMap<>(ArmorType.class), map -> {

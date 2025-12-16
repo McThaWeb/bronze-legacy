@@ -1,11 +1,11 @@
 package com.khazoda.bronze.material;
 
 import com.khazoda.bronze.Constants;
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -19,10 +19,10 @@ import java.util.EnumMap;
 
 public class TinMaterial {
 
-  public static final ResourceKey<? extends Registry<EquipmentAsset>> ROOT_ID = ResourceKey.createRegistryKey(ResourceLocation.withDefaultNamespace("equipment_asset"));
+  public static final ResourceKey<? extends Registry<EquipmentAsset>> ROOT_ID = ResourceKey.createRegistryKey(Identifier.withDefaultNamespace("equipment_asset"));
   public static final ResourceKey<EquipmentAsset> TIN_ARMOR_MATERIAL_KEY = ResourceKey.create(ROOT_ID, Constants.ID("tin"));
 
-  public static final TagKey<Item> TIN_INGOT_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/tin"));
+  public static final TagKey<Item> TIN_INGOT_TAG = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("c", "ingots/tin"));
   
   public static final ArmorMaterial ARMOR = new ArmorMaterial(7,
     Util.make(new EnumMap<>(ArmorType.class), map -> {

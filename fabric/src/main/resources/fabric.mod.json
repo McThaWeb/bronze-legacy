@@ -1,7 +1,7 @@
 {
     "schemaVersion": 1,
     "id": "bronze",
-    "version": "${mod_version}",
+    "version": "${version}",
     "name": "${mod_name}",
     "description": "${description}",
     "authors": [
@@ -39,7 +39,7 @@
         }
     },
     "depends": {
-        "fabricloader": ">=${fabric_loader_minimum_version}",
+        "fabricloader": ">=${fabric_loader_version_minimum}",
         "fabric-api": "*",
         "minecraft": "${minecraft_version}",
         "java": ">=${java_version}"

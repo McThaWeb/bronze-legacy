@@ -19,7 +19,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -35,10 +35,10 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
     @Override
     protected RecipeProvider createRecipeProvider(HolderLookup.Provider registryLookup, RecipeOutput output) {
         return new RecipeProvider(registryLookup, output) {
-            private static final TagKey<Item> BRONZE_INGOT_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "ingots/bronze"));
-            private static final TagKey<Item> RAW_TIN_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "raw_materials/tin"));
-            private static final TagKey<Item> TIN_INGOT_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "ingots/tin"));
-            private static final TagKey<Item> TIN_BLOCK_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "storage_blocks/tin"));
+            private static final TagKey<Item> BRONZE_INGOT_TAG = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "ingots/bronze"));
+            private static final TagKey<Item> RAW_TIN_TAG = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "raw_materials/tin"));
+            private static final TagKey<Item> TIN_INGOT_TAG = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "ingots/tin"));
+            private static final TagKey<Item> TIN_BLOCK_TAG = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, "storage_blocks/tin"));
             @Override
             public void buildRecipes() {
                 HolderGetter<Item> registryEntryLookup = registryLookup.lookupOrThrow(Registries.ITEM);
