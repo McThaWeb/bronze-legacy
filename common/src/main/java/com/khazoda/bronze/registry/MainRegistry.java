@@ -40,6 +40,7 @@ public class MainRegistry {
   public static final Supplier<Item> TIN_NUGGET = registerItem("tin_nugget");
   public static final Supplier<Item> TIN_INGOT = registerItem("tin_ingot");
   public static final Supplier<Item> TIN_HORSE_ARMOR = registerItem("tin_horse_armor", id -> new Item(new Item.Properties().horseArmor(TinMaterial.ARMOR).setId(id)));
+  public static final Supplier<Item> TIN_NAUTILUS_ARMOR = registerItem("tin_nautilus_armor", id -> new Item(new Item.Properties().nautilusArmor(TinMaterial.ARMOR).setId(id)));
 
   public static final Supplier<Item> TIN_SWORD = registerItem("tin_sword", id -> new Item(new Item.Properties().sword(TinMaterial.TOOL, 3.0F, -2.4F).setId(id)));
   public static final Supplier<Item> TIN_AXE = registerItem("tin_axe", id -> new AxeItem(TinMaterial.TOOL, 7F, -3.1F, new Item.Properties().setId(id)));
@@ -56,7 +57,8 @@ public class MainRegistry {
   public static final Supplier<Item> BRONZE_BLEND = registerItem("bronze_blend");
   public static final Supplier<Item> BRONZE_NUGGET = registerItem("bronze_nugget");
   public static final Supplier<Item> BRONZE_INGOT = registerItem("bronze_ingot");
-  public static final Supplier<Item> BRONZE_HORSE_ARMOR = registerItem("bronze_horse_armor", id -> new Item(new Item.Properties().horseArmor(BronzeMaterial.BRONZE).setId(id)));
+  public static final Supplier<Item> BRONZE_HORSE_ARMOR = registerItem("bronze_horse_armor", id -> new Item(new Item.Properties().horseArmor(BronzeMaterial.ARMOR).setId(id)));
+  public static final Supplier<Item> BRONZE_NAUTILUS_ARMOR = registerItem("bronze_nautilus_armor", id -> new Item(new Item.Properties().nautilusArmor(BronzeMaterial.ARMOR).setId(id)));
 
   public static final Supplier<Item> BRONZE_SWORD = registerItem("bronze_sword", id -> new Item(new Item.Properties().sword(BronzeMaterial.TOOL, 3.0F, -2.4F).setId(id)));
   public static final Supplier<Item> BRONZE_AXE = registerItem("bronze_axe", id -> new AxeItem(BronzeMaterial.TOOL, 6F, -3.1F, new Item.Properties().setId(id)));
@@ -65,10 +67,10 @@ public class MainRegistry {
   public static final Supplier<Item> BRONZE_HOE = registerItem("bronze_hoe", id -> new HoeItem(BronzeMaterial.TOOL, -2.0F, 0.0F, new Item.Properties().setId(id)));
   public static final Supplier<Item> SICKLE = registerItem("bronze_sickle", id -> new Sickle(new Item.Properties().durability(238).component(DataComponents.TOOL, Sickle.createToolProperties()).setId(id)));
 
-  public static final Supplier<Item> BRONZE_HELMET = registerItem("bronze_helmet", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE, ArmorType.HELMET).setId(id)));
-  public static final Supplier<Item> BRONZE_CHESTPLATE = registerItem("bronze_chestplate", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE, ArmorType.CHESTPLATE).setId(id)));
-  public static final Supplier<Item> BRONZE_LEGGINGS = registerItem("bronze_leggings", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE, ArmorType.LEGGINGS).setId(id)));
-  public static final Supplier<Item> BRONZE_BOOTS = registerItem("bronze_boots", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.BRONZE, ArmorType.BOOTS).setId(id)));
+  public static final Supplier<Item> BRONZE_HELMET = registerItem("bronze_helmet", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.ARMOR, ArmorType.HELMET).setId(id)));
+  public static final Supplier<Item> BRONZE_CHESTPLATE = registerItem("bronze_chestplate", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.ARMOR, ArmorType.CHESTPLATE).setId(id)));
+  public static final Supplier<Item> BRONZE_LEGGINGS = registerItem("bronze_leggings", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.ARMOR, ArmorType.LEGGINGS).setId(id)));
+  public static final Supplier<Item> BRONZE_BOOTS = registerItem("bronze_boots", id -> new Item(new Item.Properties().humanoidArmor(BronzeMaterial.ARMOR, ArmorType.BOOTS).setId(id)));
 
   // Farmers Delight Knife Compatibility
   public static Supplier<Item> BRONZE_KNIFE = registerItem("bronze_knife", id -> new FarmersDelightKnife(FarmersDelightKnife.createProperties(id, BronzeMaterial.TOOL)));

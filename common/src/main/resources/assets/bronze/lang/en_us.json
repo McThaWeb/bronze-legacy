@@ -69,5 +69,7 @@
   "item.bronze.tin_pickaxe": "Tin Pickaxe",
   "item.bronze.tin_shovel": "Tin Shovel",
   "item.bronze.tin_hoe": "Tin Hoe",
-  "item.bronze.tin_horse_armor": "Tin Horse Armor"
+  "item.bronze.tin_horse_armor": "Tin Horse Armor",
+  "item.bronze.tin_nautilus_armor": "Tin Nautilus Armor",
+  "item.bronze.bronze_nautilus_armor": "Bronze Nautilus Armor"
 }

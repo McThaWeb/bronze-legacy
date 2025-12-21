@@ -43,11 +43,13 @@ public class TabRegistry {
             output.accept(MainRegistry.TIN_NUGGET.get());
             output.accept(MainRegistry.TIN_INGOT.get());
             output.accept(MainRegistry.TIN_HORSE_ARMOR.get());
+            output.accept(MainRegistry.TIN_NAUTILUS_ARMOR.get());
 
             output.accept(MainRegistry.BRONZE_BLEND.get());
             output.accept(MainRegistry.BRONZE_NUGGET.get());
             output.accept(MainRegistry.BRONZE_INGOT.get());
             output.accept(MainRegistry.BRONZE_HORSE_ARMOR.get());
+            output.accept(MainRegistry.BRONZE_NAUTILUS_ARMOR.get());
 
             output.accept(MainRegistry.TIN_BLOCK_ITEM.get());
             output.accept(MainRegistry.BRONZE_BLOCK_ITEM.get());

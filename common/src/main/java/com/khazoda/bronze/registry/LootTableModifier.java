@@ -1,8 +1,8 @@
 package com.khazoda.bronze.registry;
 
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -29,7 +29,9 @@ public class LootTableModifier {
     LOOT_TABLE_CONFIGS.put(BASTION_BRIDGE, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NUGGET.get()), false, false));
     LOOT_TABLE_CONFIGS.put(BASTION_OTHER, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NUGGET.get(), MainRegistry.BRONZE_BLOCK_ITEM.get()), true, true));
     LOOT_TABLE_CONFIGS.put(BASTION_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_BLOCK_ITEM.get()), false, false));
-    LOOT_TABLE_CONFIGS.put(BURIED_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_INGOT.get()), false, true));
+    LOOT_TABLE_CONFIGS.put(BURIED_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NAUTILUS_ARMOR.get(), MainRegistry.TIN_NAUTILUS_ARMOR.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(OCEAN_RUIN_COLD_ARCHAEOLOGY, new LootConfig(List.of(MainRegistry.TIN_NAUTILUS_ARMOR.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(OCEAN_RUIN_WARM_ARCHAEOLOGY, new LootConfig(List.of(MainRegistry.BRONZE_NAUTILUS_ARMOR.get()), false, false));
     LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_CORRIDOR, new LootConfig(List.of(MainRegistry.BRONZE_AXE.get(), MainRegistry.TIN_AXE.get()), true, true));
     LOOT_TABLE_CONFIGS.put(DESERT_PYRAMID, new LootConfig(List.of(MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.BRONZE_INGOT.get()), false, false));
     LOOT_TABLE_CONFIGS.put(END_CITY_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_SHOVEL.get(), MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_HELMET.get(), MainRegistry.BRONZE_CHESTPLATE.get(), MainRegistry.BRONZE_LEGGINGS.get(), MainRegistry.BRONZE_BOOTS.get(), MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get()), false, true));
@@ -40,7 +42,7 @@ public class LootTableModifier {
     LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_REWARD_OMINOUS_RARE, new LootConfig(List.of(MainRegistry.BRONZE_BLOCK_ITEM.get()), false, false));
     LOOT_TABLE_CONFIGS.put(TRIAL_CHAMBERS_REWARD_RARE, new LootConfig(List.of(MainRegistry.BRONZE_AXE.get(), MainRegistry.BRONZE_CHESTPLATE.get()), false, true));
     LOOT_TABLE_CONFIGS.put(RUINED_PORTAL, new LootConfig(List.of(MainRegistry.BRONZE_NUGGET.get(), MainRegistry.TIN_NUGGET.get()), false, false));
-    LOOT_TABLE_CONFIGS.put(SHIPWRECK_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NUGGET.get(), MainRegistry.TIN_INGOT.get(), MainRegistry.TIN_NUGGET.get()), false, false));
+    LOOT_TABLE_CONFIGS.put(SHIPWRECK_TREASURE, new LootConfig(List.of(MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_NUGGET.get(), MainRegistry.TIN_INGOT.get(), MainRegistry.TIN_NUGGET.get(), MainRegistry.BRONZE_NAUTILUS_ARMOR.get(), MainRegistry.TIN_NAUTILUS_ARMOR.get()), false, false));
     LOOT_TABLE_CONFIGS.put(SIMPLE_DUNGEON, new LootConfig(List.of(MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.BRONZE_INGOT.get()), false, false));
     LOOT_TABLE_CONFIGS.put(STRONGHOLD_CORRIDOR, new LootConfig(List.of(MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_INGOT.get(), MainRegistry.BRONZE_HELMET.get(), MainRegistry.BRONZE_CHESTPLATE.get(), MainRegistry.BRONZE_LEGGINGS.get(), MainRegistry.BRONZE_BOOTS.get(), MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.TIN_HORSE_ARMOR.get()), false, true));
     LOOT_TABLE_CONFIGS.put(STRONGHOLD_CROSSING, new LootConfig(List.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.BRONZE_INGOT.get()), false, false));

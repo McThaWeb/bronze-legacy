@@ -47,6 +47,7 @@ public class BronzeModModelProvider extends FabricModelProvider {
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_NUGGET.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_INGOT.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.TIN_NAUTILUS_ARMOR.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -63,6 +64,7 @@ public class BronzeModModelProvider extends FabricModelProvider {
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_NUGGET.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_INGOT.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
+    itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_NAUTILUS_ARMOR.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
