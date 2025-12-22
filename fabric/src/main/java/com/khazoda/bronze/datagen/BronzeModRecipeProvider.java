@@ -72,13 +72,13 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
             .save(output, recipeKey("smelting/bronze_ingot_from_blasting_bronze_blend"));
         SimpleCookingRecipeBuilder
             .smelting(
-                Ingredient.of(MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_SHOVEL.get(), MainRegistry.BRONZE_AXE.get(), MainRegistry.BRONZE_HOE.get(), MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_HELMET.get(), MainRegistry.BRONZE_CHESTPLATE.get(), MainRegistry.BRONZE_LEGGINGS.get(), MainRegistry.BRONZE_BOOTS.get(), MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.BRONZE_NAUTILUS_ARMOR.get()),
+                Ingredient.of(MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_SHOVEL.get(), MainRegistry.BRONZE_AXE.get(), MainRegistry.BRONZE_HOE.get(), MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_SPEAR.get(), MainRegistry.BRONZE_HELMET.get(), MainRegistry.BRONZE_CHESTPLATE.get(), MainRegistry.BRONZE_LEGGINGS.get(), MainRegistry.BRONZE_BOOTS.get(), MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.BRONZE_NAUTILUS_ARMOR.get()),
                 RecipeCategory.MISC, MainRegistry.BRONZE_NUGGET.get(), 0.1F, 200)
             .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
             .save(output, recipeKey("smelting/bronze_nugget_from_smelting"));
         SimpleCookingRecipeBuilder
             .blasting(
-                Ingredient.of(MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_SHOVEL.get(), MainRegistry.BRONZE_AXE.get(), MainRegistry.BRONZE_HOE.get(), MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_HELMET.get(), MainRegistry.BRONZE_CHESTPLATE.get(), MainRegistry.BRONZE_LEGGINGS.get(), MainRegistry.BRONZE_BOOTS.get(), MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.BRONZE_NAUTILUS_ARMOR.get()),
+                Ingredient.of(MainRegistry.BRONZE_PICKAXE.get(), MainRegistry.BRONZE_SHOVEL.get(), MainRegistry.BRONZE_AXE.get(), MainRegistry.BRONZE_HOE.get(), MainRegistry.BRONZE_SWORD.get(), MainRegistry.BRONZE_SPEAR.get(), MainRegistry.BRONZE_HELMET.get(), MainRegistry.BRONZE_CHESTPLATE.get(), MainRegistry.BRONZE_LEGGINGS.get(), MainRegistry.BRONZE_BOOTS.get(), MainRegistry.BRONZE_HORSE_ARMOR.get(), MainRegistry.BRONZE_NAUTILUS_ARMOR.get()),
                 RecipeCategory.MISC, MainRegistry.BRONZE_NUGGET.get(), 0.1F, 100)
             .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
             .save(output, recipeKey("smelting/bronze_nugget_from_blasting"));
@@ -109,13 +109,13 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
 
         SimpleCookingRecipeBuilder
             .smelting(
-                Ingredient.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.TIN_SHOVEL.get(), MainRegistry.TIN_AXE.get(), MainRegistry.TIN_HOE.get(), MainRegistry.TIN_SWORD.get(), MainRegistry.TIN_HELMET.get(), MainRegistry.TIN_CHESTPLATE.get(), MainRegistry.TIN_LEGGINGS.get(), MainRegistry.TIN_BOOTS.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.TIN_NAUTILUS_ARMOR.get()),
+                Ingredient.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.TIN_SHOVEL.get(), MainRegistry.TIN_AXE.get(), MainRegistry.TIN_HOE.get(), MainRegistry.TIN_SWORD.get(), MainRegistry.TIN_SPEAR.get(), MainRegistry.TIN_HELMET.get(), MainRegistry.TIN_CHESTPLATE.get(), MainRegistry.TIN_LEGGINGS.get(), MainRegistry.TIN_BOOTS.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.TIN_NAUTILUS_ARMOR.get()),
                 RecipeCategory.MISC, MainRegistry.TIN_NUGGET.get(), 0.1F, 200)
             .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
             .save(output, recipeKey("smelting/tin_nugget_from_smelting"));
         SimpleCookingRecipeBuilder
             .smelting(
-                Ingredient.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.TIN_SHOVEL.get(), MainRegistry.TIN_AXE.get(), MainRegistry.TIN_HOE.get(), MainRegistry.TIN_SWORD.get(), MainRegistry.TIN_HELMET.get(), MainRegistry.TIN_CHESTPLATE.get(), MainRegistry.TIN_LEGGINGS.get(), MainRegistry.TIN_BOOTS.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.TIN_NAUTILUS_ARMOR.get()),
+                Ingredient.of(MainRegistry.TIN_PICKAXE.get(), MainRegistry.TIN_SHOVEL.get(), MainRegistry.TIN_AXE.get(), MainRegistry.TIN_HOE.get(), MainRegistry.TIN_SWORD.get(), MainRegistry.TIN_SPEAR.get(), MainRegistry.TIN_HELMET.get(), MainRegistry.TIN_CHESTPLATE.get(), MainRegistry.TIN_LEGGINGS.get(), MainRegistry.TIN_BOOTS.get(), MainRegistry.TIN_HORSE_ARMOR.get(), MainRegistry.TIN_NAUTILUS_ARMOR.get()),
                 RecipeCategory.MISC, MainRegistry.TIN_NUGGET.get(), 0.1F, 100)
             .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
             .save(output, recipeKey("smelting/tin_nugget_from_blasting"));
@@ -244,6 +244,15 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
             .define('#', Ingredient.of(tagHolder(ConventionalItemTags.WOODEN_RODS)))
             .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
             .save(output, recipeKey("crafting/tin_sword"));
+        ShapedRecipeBuilder
+            .shaped(registryEntryLookup, RecipeCategory.COMBAT, MainRegistry.TIN_SPEAR.get())
+            .pattern("  T")
+            .pattern(" # ")
+            .pattern("#  ")
+            .define('T', Ingredient.of(tagHolder(TIN_INGOT_TAG)))
+            .define('#', Ingredient.of(tagHolder(ConventionalItemTags.WOODEN_RODS)))
+            .unlockedBy(getHasName(MainRegistry.TIN_INGOT.get()), has(TIN_INGOT_TAG))
+            .save(output, recipeKey("crafting/tin_spear"));
 
         // Bronze
         ShapedRecipeBuilder
@@ -330,6 +339,15 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
             .define('#', Ingredient.of(tagHolder(ConventionalItemTags.WOODEN_RODS)))
             .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
             .save(output, recipeKey("crafting/bronze_sword"));
+        ShapedRecipeBuilder
+            .shaped(registryEntryLookup, RecipeCategory.COMBAT, MainRegistry.BRONZE_SPEAR.get())
+            .pattern("  B")
+            .pattern(" # ")
+            .pattern("#  ")
+            .define('B', Ingredient.of(tagHolder(BRONZE_INGOT_TAG)))
+            .define('#', Ingredient.of(tagHolder(ConventionalItemTags.WOODEN_RODS)))
+            .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
+            .save(output, recipeKey("crafting/bronze_spear"));
 
         // Other blocks
         ShapedRecipeBuilder

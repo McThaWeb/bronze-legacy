@@ -3,8 +3,8 @@ package com.khazoda.bronze.datagen;
 import com.khazoda.bronze.material.BronzeMaterial;
 import com.khazoda.bronze.material.TinMaterial;
 import com.khazoda.bronze.registry.MainRegistry;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.BlockModelGenerators.BlockFamilyProvider;
 import net.minecraft.client.data.models.ItemModelGenerators;
@@ -49,6 +49,7 @@ public class BronzeModModelProvider extends FabricModelProvider {
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_NAUTILUS_ARMOR.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+    itemModelGenerators.generateSpear(MainRegistry.TIN_SPEAR.get());
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.TIN_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -66,6 +67,7 @@ public class BronzeModModelProvider extends FabricModelProvider {
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_HORSE_ARMOR.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_NAUTILUS_ARMOR.get(), ModelTemplates.FLAT_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+    itemModelGenerators.generateSpear(MainRegistry.BRONZE_SPEAR.get());
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     itemModelGenerators.generateFlatItem(MainRegistry.BRONZE_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);

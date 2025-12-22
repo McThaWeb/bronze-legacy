@@ -18,6 +18,7 @@ public class TabRegistry {
           .icon(() -> MainRegistry.BRONZE_BLOCK_ITEM.get().getDefaultInstance())
           .displayItems((parameters, output) -> {
             output.accept(MainRegistry.BRONZE_SWORD.get());
+            output.accept(MainRegistry.BRONZE_SPEAR.get());
             output.accept(MainRegistry.BRONZE_AXE.get());
             output.accept(MainRegistry.BRONZE_PICKAXE.get());
             output.accept(MainRegistry.BRONZE_SHOVEL.get());
@@ -27,6 +28,7 @@ public class TabRegistry {
             output.accept(MainRegistry.BRONZE_LEGGINGS.get());
             output.accept(MainRegistry.BRONZE_BOOTS.get());
             output.accept(MainRegistry.TIN_SWORD.get());
+            output.accept(MainRegistry.TIN_SPEAR.get());
             output.accept(MainRegistry.TIN_AXE.get());
             output.accept(MainRegistry.TIN_PICKAXE.get());
             output.accept(MainRegistry.TIN_SHOVEL.get());

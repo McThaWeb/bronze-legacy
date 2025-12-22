@@ -71,5 +71,7 @@
   "item.bronze.tin_hoe": "Tin Hoe",
   "item.bronze.tin_horse_armor": "Tin Horse Armor",
   "item.bronze.tin_nautilus_armor": "Tin Nautilus Armor",
-  "item.bronze.bronze_nautilus_armor": "Bronze Nautilus Armor"
+  "item.bronze.bronze_nautilus_armor": "Bronze Nautilus Armor",
+  "item.bronze.tin_spear": "Tin Spear",
+  "item.bronze.bronze_spear": "Bronze Spear"
 }

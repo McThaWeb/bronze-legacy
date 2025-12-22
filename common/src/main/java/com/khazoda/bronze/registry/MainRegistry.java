@@ -43,6 +43,7 @@ public class MainRegistry {
   public static final Supplier<Item> TIN_NAUTILUS_ARMOR = registerItem("tin_nautilus_armor", id -> new Item(new Item.Properties().nautilusArmor(TinMaterial.ARMOR).setId(id)));
 
   public static final Supplier<Item> TIN_SWORD = registerItem("tin_sword", id -> new Item(new Item.Properties().sword(TinMaterial.TOOL, 3.0F, -2.4F).setId(id)));
+  public static final Supplier<Item> TIN_SPEAR = registerItem("tin_spear", id -> new Item(new Item.Properties().spear(TinMaterial.TOOL, 0.85F, 0.82F, 0.65F, 4.0F, 9.0F, 8.25F, 5.1F, 12.5F, 4.6F).setId(id)));
   public static final Supplier<Item> TIN_AXE = registerItem("tin_axe", id -> new AxeItem(TinMaterial.TOOL, 7F, -3.1F, new Item.Properties().setId(id)));
   public static final Supplier<Item> TIN_PICKAXE = registerItem("tin_pickaxe", id -> new Item(new Item.Properties().pickaxe(TinMaterial.TOOL, 1.0F, -2.8F).setId(id)));
   public static final Supplier<Item> TIN_SHOVEL = registerItem("tin_shovel", id -> new ShovelItem(TinMaterial.TOOL, 1.5F, -3.0F, new Item.Properties().setId(id)));
@@ -61,6 +62,7 @@ public class MainRegistry {
   public static final Supplier<Item> BRONZE_NAUTILUS_ARMOR = registerItem("bronze_nautilus_armor", id -> new Item(new Item.Properties().nautilusArmor(BronzeMaterial.ARMOR).setId(id)));
 
   public static final Supplier<Item> BRONZE_SWORD = registerItem("bronze_sword", id -> new Item(new Item.Properties().sword(BronzeMaterial.TOOL, 3.0F, -2.4F).setId(id)));
+  public static final Supplier<Item> BRONZE_SPEAR = registerItem("bronze_spear", id -> new Item(new Item.Properties().spear(BronzeMaterial.TOOL, 0.95F, 0.95F, 0.6F, 2.5F, 8.0F, 6.75F, 5.1F, 11.25F, 4.6F).setId(id)));
   public static final Supplier<Item> BRONZE_AXE = registerItem("bronze_axe", id -> new AxeItem(BronzeMaterial.TOOL, 6F, -3.1F, new Item.Properties().setId(id)));
   public static final Supplier<Item> BRONZE_PICKAXE = registerItem("bronze_pickaxe", id -> new Item(new Item.Properties().pickaxe(BronzeMaterial.TOOL, 1.0F, -2.8F).setId(id)));
   public static final Supplier<Item> BRONZE_SHOVEL = registerItem("bronze_shovel", id -> new ShovelItem(BronzeMaterial.TOOL, 1.5F, -3.0F, new Item.Properties().setId(id)));
