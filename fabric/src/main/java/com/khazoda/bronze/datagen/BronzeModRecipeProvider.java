@@ -351,7 +351,7 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
 
         // Other blocks
         ShapedRecipeBuilder
-            .shaped(registryEntryLookup, RecipeCategory.BUILDING_BLOCKS, MainRegistry.BRONZE_DOOR.get())
+            .shaped(registryEntryLookup, RecipeCategory.BUILDING_BLOCKS, MainRegistry.BRONZE_DOOR.get(),3)
             .pattern("BB")
             .pattern("BB")
             .pattern("BB")
@@ -359,7 +359,7 @@ public class BronzeModRecipeProvider extends FabricRecipeProvider {
             .unlockedBy(getHasName(MainRegistry.BRONZE_INGOT.get()), has(BRONZE_INGOT_TAG))
             .save(output, recipeKey("crafting/bronze_door"));
         ShapedRecipeBuilder
-            .shaped(registryEntryLookup, RecipeCategory.BUILDING_BLOCKS, MainRegistry.BRONZE_TRAPDOOR.get())
+            .shaped(registryEntryLookup, RecipeCategory.BUILDING_BLOCKS, MainRegistry.BRONZE_TRAPDOOR.get(),2)
             .pattern("BB")
             .pattern("BB")
             .define('B', Ingredient.of(tagHolder(BRONZE_INGOT_TAG)))
