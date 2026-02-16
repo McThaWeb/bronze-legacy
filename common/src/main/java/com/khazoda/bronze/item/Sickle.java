@@ -300,17 +300,21 @@ public class Sickle extends Item {
       if (currentState.getBlock() != cropBlock) break;
 
       boolean selfHarvested = false;
-      if (entity instanceof Player player) {
-        /* Try the block's own harvest interaction first (compat for e.g. Farmer's Delight tomatoes) */
-        BlockHitResult hit = new BlockHitResult(Vec3.atCenterOf(current), Direction.UP, current, false);
-        InteractionResult result = currentState.useWithoutItem(level, player, hit);
-        if (result.consumesAction()) {
-          selfHarvested = true;
+      try {
+        if (entity instanceof Player player) {
+          /* Try the block's own harvest interaction first (compat for e.g. Farmer's Delight tomatoes) */
+          BlockHitResult hit = new BlockHitResult(Vec3.atCenterOf(current), Direction.UP, current, false);
+          InteractionResult result = currentState.useWithoutItem(level, player, hit);
+          if (result.consumesAction()) {
+            selfHarvested = true;
+          } else {
+            currentState.getBlock().playerDestroy(level, player, current, currentState, null, player.getMainHandItem());
+          }
         } else {
-          currentState.getBlock().playerDestroy(level, player, current, currentState, null, player.getMainHandItem());
+          Block.dropResources(currentState, level, current, null, entity, ItemStack.EMPTY);
         }
-      } else {
-        Block.dropResources(currentState, level, current, null, entity, ItemStack.EMPTY);
+      } catch (Exception e) {
+        LOG.warn("[Sickle] Failed to harvest {} at {}: {}", cropBlock.getClass().getSimpleName(), current, e.getMessage());
       }
 
       /* Only clear the block if it wasn't self-harvested and playerDestroy didn't replace it */
@@ -330,7 +334,11 @@ public class Sickle extends Item {
   }
 
   private static void replantCrop(Level level, BlockState state, BlockPos pos, IntegerProperty ageProperty) {
-    level.setBlock(pos, state.setValue(ageProperty, 0), 3);
+    try {
+      level.setBlock(pos, state.setValue(ageProperty, 0), 3);
+    } catch (IllegalArgumentException e) {
+      LOG.warn("[Sickle] Failed to replant {} at {}: {}", state.getBlock().getClass().getSimpleName(), pos, e.getMessage());
+    }
   }
 }
 
