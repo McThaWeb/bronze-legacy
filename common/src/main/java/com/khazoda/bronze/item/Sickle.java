@@ -29,7 +29,9 @@ import net.minecraft.world.level.block.NetherWartBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.khazoda.bronze.Constants.ID;
 import static com.khazoda.bronze.Constants.LOG;
@@ -96,14 +98,18 @@ public class Sickle extends Item {
     BlockState state = level.getBlockState(pos);
 
     if ((state.getBlock() instanceof CropBlock || state.getBlock() instanceof NetherWartBlock) && isMature(state)) {
-      level.playSound(null, pos, state.getSoundType().getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
+      BlockPos basePos = findCropBase(level, pos);
+      BlockState baseState = level.getBlockState(basePos);
+
+      level.playSound(null, basePos, baseState.getSoundType().getBreakSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
       player.swing(context.getHand());
       ((ServerLevel) level).sendParticles(ParticleTypes.SWEEP_ATTACK,
-          pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+          basePos.getX() + 0.5, basePos.getY() + 0.5, basePos.getZ() + 0.5,
           1, 0, 0, 0, 0);
 
       stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
-      aoeHarvest(level, player, state, state, pos, 0);
+      Set<BlockPos> visited = new HashSet<>();
+      aoeHarvest(level, player, basePos, 0, visited);
       return InteractionResult.SUCCESS;
     } else if ((state.is(SICKLE_PLUCK_BLOCKS))) {
       level.playSound(null, pos, state.getSoundType().getBreakSound(), SoundSource.BLOCKS, 0.8F, 1.0F);
@@ -168,16 +174,21 @@ public class Sickle extends Item {
     }
   }
 
-  private static void aoeHarvest(Level level, LivingEntity entity, BlockState initialBlockState, BlockState currentBlockState, BlockPos pos, int iteration) {
+  private static void aoeHarvest(Level level, LivingEntity entity, BlockPos pos, int iteration, Set<BlockPos> visited) {
     if (level.isClientSide()) return;
+    BlockState blockState = level.getBlockState(pos);
     /* Harvest Crops */
-    if ((initialBlockState.getBlock() instanceof CropBlock || initialBlockState.getBlock() instanceof NetherWartBlock)) {
+    if ((blockState.getBlock() instanceof CropBlock || blockState.getBlock() instanceof NetherWartBlock)) {
+      BlockPos basePos = findCropBase(level, pos);
+      if (!visited.add(basePos)) return;
+
+      BlockState baseState = level.getBlockState(basePos);
+
       /* Ascertain the age IntegerProperty of the block */
       IntegerProperty ageProperty = null;
-      boolean isMature = switch (initialBlockState.getBlock()) {
+      boolean isMature = switch (baseState.getBlock()) {
         case CropBlock cropBlock -> {
-          // Dynamically find the age property
-          ageProperty = initialBlockState.getProperties().stream()
+          ageProperty = baseState.getProperties().stream()
               .filter(p -> p instanceof IntegerProperty)
               .filter(p -> p.getName().equals("age"))
               .map(p -> (IntegerProperty) p)
@@ -185,11 +196,11 @@ public class Sickle extends Item {
               .orElse(null);
           if (ageProperty == null) yield false;
 
-          int currentAge = initialBlockState.getValue(ageProperty);
+          int currentAge = baseState.getValue(ageProperty);
           yield currentAge >= cropBlock.getMaxAge();
         }
         case NetherWartBlock netherWart -> {
-          int currentAge = initialBlockState.getValue(NetherWartBlock.AGE);
+          int currentAge = baseState.getValue(NetherWartBlock.AGE);
           ageProperty = NetherWartBlock.AGE;
           yield currentAge >= 3;
         }
@@ -197,26 +208,17 @@ public class Sickle extends Item {
       };
       if (!isMature) return;
 
-      /* Break block, drop drops */
-      if (entity instanceof Player player) {
-        if (level.getBlockState(pos).getBlock() == currentBlockState.getBlock()) {
-          currentBlockState.getBlock().playerDestroy(level, player, pos, currentBlockState, null, player.getMainHandItem());
-          ((ServerLevel) level).sendParticles(new BlockParticleOption(
-                  ParticleTypes.BLOCK, currentBlockState),
-              pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-              5, 0.2, 0.2, 0.2, 0.1);
-          tryExtraHappyLootChance(level, pos);
-        }
-      } else {
-        Block.dropResources(currentBlockState, level, pos, null, entity, ItemStack.EMPTY);
-      }
-      /* Reset crop to lowest growth stage */
-      replantCrop(level, initialBlockState, pos, ageProperty);
+      /* Break the entire crop column from top to bottom, then replant at base */
+      harvestCropColumn(level, entity, basePos);
+      tryExtraHappyLootChance(level, basePos);
+
+      /* Replant at base position */
+      replantCrop(level, baseState, basePos, ageProperty);
       if (iteration < 2) {
-        aoeHarvest(level, entity, level.getBlockState(pos.east()), level.getBlockState(pos.east()), pos.east(), iteration + 1);
-        aoeHarvest(level, entity, level.getBlockState(pos.north()), level.getBlockState(pos.north()), pos.north(), iteration + 1);
-        aoeHarvest(level, entity, level.getBlockState(pos.west()), level.getBlockState(pos.west()), pos.west(), iteration + 1);
-        aoeHarvest(level, entity, level.getBlockState(pos.south()), level.getBlockState(pos.south()), pos.south(), iteration + 1);
+        aoeHarvest(level, entity, pos.east(), iteration + 1, visited);
+        aoeHarvest(level, entity, pos.north(), iteration + 1, visited);
+        aoeHarvest(level, entity, pos.west(), iteration + 1, visited);
+        aoeHarvest(level, entity, pos.south(), iteration + 1, visited);
       }
     }
   }
@@ -270,7 +272,47 @@ public class Sickle extends Item {
     return false;
   }
 
-  /* 'state' must reference the blockstate before the crop is destroyed */
+  private static BlockPos findCropBase(Level level, BlockPos pos) {
+    Block cropBlock = level.getBlockState(pos).getBlock();
+    BlockPos basePos = pos;
+    while (level.getBlockState(basePos.below()).getBlock() == cropBlock) {
+      basePos = basePos.below();
+    }
+    return basePos;
+  }
+
+  private static void harvestCropColumn(Level level, LivingEntity entity, BlockPos basePos) {
+    Block cropBlock = level.getBlockState(basePos).getBlock();
+
+    /* Find the top of the column */
+    BlockPos topPos = basePos;
+    while (level.getBlockState(topPos.above()).getBlock() == cropBlock) {
+      topPos = topPos.above();
+    }
+
+    /* Break from top down to avoid cascading block updates causing drops to vanish */
+    BlockPos current = topPos;
+    while (current.getY() >= basePos.getY()) {
+      BlockState currentState = level.getBlockState(current);
+      if (currentState.getBlock() != cropBlock) break;
+
+      if (entity instanceof Player player) {
+        currentState.getBlock().playerDestroy(level, player, current, currentState, null, player.getMainHandItem());
+      } else {
+        Block.dropResources(currentState, level, current, null, entity, ItemStack.EMPTY);
+      }
+
+      level.setBlock(current, Blocks.AIR.defaultBlockState(), 3);
+
+      ((ServerLevel) level).sendParticles(new BlockParticleOption(
+              ParticleTypes.BLOCK, currentState),
+          current.getX() + 0.5, current.getY() + 0.5, current.getZ() + 0.5,
+          5, 0.2, 0.2, 0.2, 0.1);
+
+      current = current.below();
+    }
+  }
+
   private static void replantCrop(Level level, BlockState state, BlockPos pos, IntegerProperty ageProperty) {
     level.setBlock(pos, state.setValue(ageProperty, 0), 3);
   }
