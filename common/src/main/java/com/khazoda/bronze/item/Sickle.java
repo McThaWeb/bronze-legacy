@@ -85,7 +85,7 @@ public class Sickle extends DiggerItem {
 
       stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
       Set<BlockPos> visited = new HashSet<>();
-      aoeHarvest(level, player, baseState, baseState, basePos, 0, visited);
+      aoeHarvest(level, player, basePos, 0, visited);
       return InteractionResult.SUCCESS;
     }
     return InteractionResult.PASS;
@@ -128,10 +128,11 @@ public class Sickle extends DiggerItem {
     }
   }
 
-  private static void aoeHarvest(Level level, LivingEntity entity, BlockState initialBlockState, BlockState currentBlockState, BlockPos pos, int iteration, Set<BlockPos> visited) {
+  private static void aoeHarvest(Level level, LivingEntity entity, BlockPos pos, int iteration, Set<BlockPos> visited) {
     if (level.isClientSide()) return;
+    BlockState blockState = level.getBlockState(pos);
     /* Harvest Crops */
-    if ((initialBlockState.getBlock() instanceof CropBlock || initialBlockState.getBlock() instanceof NetherWartBlock)) {
+    if ((blockState.getBlock() instanceof CropBlock || blockState.getBlock() instanceof NetherWartBlock)) {
       /* Go to base of crop column and skip if already processed */
       BlockPos basePos = findCropBase(level, pos);
       if (!visited.add(basePos)) return;
@@ -169,10 +170,10 @@ public class Sickle extends DiggerItem {
       /* Replant at base position */
       replantCrop(level, baseState, basePos, ageProperty);
       if (iteration < 2) {
-        aoeHarvest(level, entity, level.getBlockState(pos.east()), level.getBlockState(pos.east()), pos.east(), iteration + 1, visited);
-        aoeHarvest(level, entity, level.getBlockState(pos.north()), level.getBlockState(pos.north()), pos.north(), iteration + 1, visited);
-        aoeHarvest(level, entity, level.getBlockState(pos.west()), level.getBlockState(pos.west()), pos.west(), iteration + 1, visited);
-        aoeHarvest(level, entity, level.getBlockState(pos.south()), level.getBlockState(pos.south()), pos.south(), iteration + 1, visited);
+        aoeHarvest(level, entity, pos.east(), iteration + 1, visited);
+        aoeHarvest(level, entity, pos.north(), iteration + 1, visited);
+        aoeHarvest(level, entity, pos.west(), iteration + 1, visited);
+        aoeHarvest(level, entity, pos.south(), iteration + 1, visited);
       }
     }
   }
