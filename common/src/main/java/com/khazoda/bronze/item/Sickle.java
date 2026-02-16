@@ -191,7 +191,7 @@ public class Sickle extends DiggerItem {
             SoundEvents.NOTE_BLOCK_CHIME, SoundSource.BLOCKS, 1.0F, randomPitch);
       }
       /* 1/150 chance to drop mob loot */
-      if (level.random.nextInt(1) == 0) {
+      if (level.random.nextInt(150) == 0) {
         ItemStack drop;
         // Randomly choose one of the mob drops
         switch (level.random.nextInt(4)) {
