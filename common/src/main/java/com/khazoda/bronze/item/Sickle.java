@@ -3,6 +3,7 @@ package com.khazoda.bronze.item;
 import com.khazoda.bronze.ConfigCommon;
 import com.khazoda.bronze.platform.Services;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -28,6 +29,8 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.NetherWartBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.HashSet;
 import java.util.List;
@@ -296,18 +299,31 @@ public class Sickle extends Item {
       BlockState currentState = level.getBlockState(current);
       if (currentState.getBlock() != cropBlock) break;
 
+      boolean selfHarvested = false;
       if (entity instanceof Player player) {
-        currentState.getBlock().playerDestroy(level, player, current, currentState, null, player.getMainHandItem());
+        /* Try the block's own harvest interaction first (compat for e.g. Farmer's Delight tomatoes) */
+        BlockHitResult hit = new BlockHitResult(Vec3.atCenterOf(current), Direction.UP, current, false);
+        InteractionResult result = currentState.useWithoutItem(level, player, hit);
+        if (result.consumesAction()) {
+          selfHarvested = true;
+        } else {
+          currentState.getBlock().playerDestroy(level, player, current, currentState, null, player.getMainHandItem());
+        }
       } else {
         Block.dropResources(currentState, level, current, null, entity, ItemStack.EMPTY);
       }
 
-      level.setBlock(current, Blocks.AIR.defaultBlockState(), 3);
+      /* Only clear the block if it wasn't self-harvested and playerDestroy didn't replace it */
+      if (!selfHarvested && level.getBlockState(current).getBlock() == cropBlock) {
+        level.setBlock(current, Blocks.AIR.defaultBlockState(), 3);
+      }
 
-      ((ServerLevel) level).sendParticles(new BlockParticleOption(
-              ParticleTypes.BLOCK, currentState),
-          current.getX() + 0.5, current.getY() + 0.5, current.getZ() + 0.5,
-          5, 0.2, 0.2, 0.2, 0.1);
+      if (!selfHarvested) {
+        ((ServerLevel) level).sendParticles(new BlockParticleOption(
+                ParticleTypes.BLOCK, currentState),
+            current.getX() + 0.5, current.getY() + 0.5, current.getZ() + 0.5,
+            5, 0.2, 0.2, 0.2, 0.1);
+      }
 
       current = current.below();
     }
