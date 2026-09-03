@@ -34,5 +34,5 @@ public class BronzeMaterial {
       map.put(ArmorType.BODY, 5);
     }), 12, SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0.0F, BRONZE_INGOT_TAG, BRONZE_ARMOR_MATERIAL_KEY);
   
-  public static final ToolMaterial TOOL = new ToolMaterial(BlockTags.INCORRECT_FOR_IRON_TOOL, 500, 6.0F, 2.0F, 14, BRONZE_INGOT_TAG);
+  public static final ToolMaterial TOOL = new ToolMaterial(BlockTags.INCORRECT_FOR_IRON_TOOL, 650, 6.0F, 2.0F, 14, BRONZE_INGOT_TAG);
 }
