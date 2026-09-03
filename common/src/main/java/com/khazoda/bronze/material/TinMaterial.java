@@ -33,5 +33,5 @@ public class TinMaterial {
       map.put(ArmorType.BODY, 4);
     }), 9, SoundEvents.ARMOR_EQUIP_CHAIN, 0.0F, 0.0F, TIN_INGOT_TAG, TIN_ARMOR_MATERIAL_KEY);
   
-  public static final ToolMaterial TOOL = new ToolMaterial(BlockTags.INCORRECT_FOR_COPPER_TOOL, 151, 6.0F, 1F, 13, TIN_INGOT_TAG);
+  public static final ToolMaterial TOOL = new ToolMaterial(BlockTags.INCORRECT_FOR_COPPER_TOOL, 171, 6.0F, 1F, 13, TIN_INGOT_TAG);
 }
